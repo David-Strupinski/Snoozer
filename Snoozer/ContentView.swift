@@ -21,22 +21,87 @@ struct ContentView: View {
                 .frame(width: 200, height: 200)
             
             Button(action: {
-                print("You Snooze You Lose")
+                print("Alarm Stopped")
             }) {
-                Text("Snoozer")
+                Text("Stop Alarm")
                     .font(.system(size: 40))
                     .padding(.horizontal, 50)
+                    .padding(.vertical, 10)
                     .background(Color.orange)
                     .foregroundColor(.black)
                     .clipShape(Capsule())
             }
             .padding(50)
             
+            Button(action: {
+                print("You Snooze You Lose")
+            }) {
+                Text("Snoozer")
+                    .font(.system(size: 20))
+                    .padding(.horizontal, 25)
+                    .padding(.vertical, 10)
+                    .background(Color.orange)
+                    .foregroundColor(.black)
+                    .clipShape(Capsule())
+            }
+            .padding(.bottom, 10)
+            
+            HStack (spacing: 0) {
+                Spacer()
+                
+                Text("3")
+                Image(systemName: "flame.fill")
+                    .padding(.trailing, 10.0)
+                
+                Text("ENDS STREAK")
+                
+                Spacer()
+            }
+            .padding(.bottom, 50)
+            
+            
             Spacer()
             
-            GroupBox(label: Label("Home", systemImage: "plus")) {
-                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Content@*/Text("Content")/*@END_MENU_TOKEN@*/
+            HStack {
+                Spacer()
+                
+                Button(action: {
+                    print("hi")
+                }) {
+                    Image(systemName: "person.crop.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 30)
+                }
+                .padding(.vertical, 10)
+                
+                Spacer()
+                
+                Button(action: {
+                    print("hi")
+                }) {
+                    Image(systemName: "plus.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 60, height: 60)
+                }
+                .padding(.bottom, 20)
+                
+                Spacer()
+                
+                Button(action: {
+                    print("hi")
+                }) {
+                    Image(systemName: "ellipsis.message")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 30)
+                }
+                .padding(.vertical, 10)
+                
+                Spacer()
             }
+            .background(Color(.lightGray))
         }
     }
 }
