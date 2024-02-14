@@ -17,6 +17,7 @@
 		6F6AB27B2B7810E3003427C8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6AB27A2B7810E3003427C8 /* ProfileView.swift */; };
 		6F6AB27D2B7812F7003427C8 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6AB27C2B7812F7003427C8 /* AlarmView.swift */; };
 		6F6AB27F2B781329003427C8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6AB27E2B781329003427C8 /* ChatView.swift */; };
+		DBE2D1FB2B7D7C5700F68C3D /* TriviaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE2D1FA2B7D7C5700F68C3D /* TriviaView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		6F6AB27A2B7810E3003427C8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6F6AB27C2B7812F7003427C8 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		6F6AB27E2B781329003427C8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		DBE2D1FA2B7D7C5700F68C3D /* TriviaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				6F6AB27C2B7812F7003427C8 /* AlarmView.swift */,
 				6F6AB27E2B781329003427C8 /* ChatView.swift */,
 				6F6AB27A2B7810E3003427C8 /* ProfileView.swift */,
+				DBE2D1FA2B7D7C5700F68C3D /* TriviaView.swift */,
 				6F6AB2522B7571B2003427C8 /* Assets.xcassets */,
 				6F6AB2542B7571B2003427C8 /* Preview Content */,
 			);
@@ -267,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F6AB2512B7571B1003427C8 /* ContentView.swift in Sources */,
+				DBE2D1FB2B7D7C5700F68C3D /* TriviaView.swift in Sources */,
 				6F6AB27B2B7810E3003427C8 /* ProfileView.swift in Sources */,
 				6F6AB27F2B781329003427C8 /* ChatView.swift in Sources */,
 				6F6AB27D2B7812F7003427C8 /* AlarmView.swift in Sources */,
