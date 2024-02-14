@@ -26,3 +26,7 @@ struct AlarmView: View {
         }
     }
 }
+
+#Preview {
+    AlarmView()
+}
