@@ -11,11 +11,23 @@ import SwiftUI
 struct ProfileView: View {
     var body: some View {
         VStack {
+            Spacer()
             
+            Image(systemName: "person.crop.circle")
+                .imageScale(.large)
+            
+            Text("name")
+            
+            Text("XXX-XXX-XXXX")
+            
+            Spacer()
+            
+            // streaks leaderboard
+            Text("Current Streak: ")
+            
+            Text("Longest Streak: ")
+            
+            Spacer()
         }
     }
-}
-
-#Preview {
-    ProfileView()
 }

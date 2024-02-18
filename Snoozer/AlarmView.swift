@@ -9,46 +9,55 @@ import Foundation
 import SwiftUI
 
 struct AlarmView: View {
-    // TODO: make this more global to hold state past this page
-    @State private var alarms: [Date: Bool] = [
-        stringToTime(str: "7:00 AM"): true,
-        stringToTime(str: "8:00 AM"): false,
-        stringToTime(str: "10:00 PM"): true
-    ]
-    
     var body: some View {
         VStack {
-            Text("Alarm")
+            Text("7:00")
+                .font(.system(size: 100))
             
-            // repeat per alarm added
-            ForEach(alarms.sorted(by: { $0.key < $1.key }), id: \.key) { (time, active) in
-                HStack {
-                    Toggle(isOn: Binding(
-                        get: { alarms[time] ?? false },
-                        set: { alarms[time] = $0 }
-                    )) {
-                        Text(timeToString(time: time))
-                    }
-                    .toggleStyle(.switch)
-                }
-                .padding()
+            Image(systemName: "alarm")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
+            
+            Button(action: {
+                print("Alarm Stopped")
+            }) {
+                Text("Stop Alarm")
+                    .font(.system(size: 40))
+                    .padding(.horizontal, 50)
+                    .padding(.vertical, 10)
+                    .background(Color.orange)
+                    .foregroundColor(.black)
+                    .clipShape(Capsule())
             }
+            .padding(50)
+            
+            Button(action: {
+                print("You Snooze You Lose")
+            }) {
+                Text("Snoozer")
+                    .font(.system(size: 20))
+                    .padding(.horizontal, 25)
+                    .padding(.vertical, 10)
+                    .background(Color.orange)
+                    .foregroundColor(.black)
+                    .clipShape(Capsule())
+            }
+            .padding(.bottom, 10)
+            
+            // streaks
+            HStack (spacing: 0) {
+                Spacer()
+                
+                Text("3")
+                Image(systemName: "flame.fill")
+                    .padding(.trailing, 10.0)
+                
+                Text("ENDS STREAK")
+                
+                Spacer()
+            }
+            .padding(.bottom, 50)
         }
     }
-}
-
-func stringToTime(str: String) -> Date {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "hh:mm a"
-    return dateFormatter.date(from: str)!
-}
-
-func timeToString(time: Date) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "hh:mm a"
-    return dateFormatter.string(from: time)
-}
-
-#Preview {
-    AlarmView()
 }

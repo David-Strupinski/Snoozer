@@ -10,100 +10,55 @@ import UIKit
 import CoreHaptics
 
 struct ContentView: View {
+    // TODO: make this more global to hold state past this page?
+    @State private var alarms: [Date: Bool] = [
+        stringToTime(str: "7:00 AM"): true,
+        stringToTime(str: "8:00 AM"): false,
+        stringToTime(str: "10:00 PM"): true
+    ]
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("7:00")
-                    .font(.system(size: 100))
-                
-                Image(systemName: "alarm")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200, height: 200)
-                
-                Button(action: {
-                    print("Alarm Stopped")
-                }) {
-                    Text("Stop Alarm")
-                        .font(.system(size: 40))
-                        .padding(.horizontal, 50)
-                        .padding(.vertical, 10)
-                        .background(Color.orange)
-                        .foregroundColor(.black)
-                        .clipShape(Capsule())
-                }
-                .padding(50)
-                
-                Button(action: {
-                    print("You Snooze You Lose")
-                }) {
-                    Text("Snoozer")
-                        .font(.system(size: 20))
-                        .padding(.horizontal, 25)
-                        .padding(.vertical, 10)
-                        .background(Color.orange)
-                        .foregroundColor(.black)
-                        .clipShape(Capsule())
-                }
-                .padding(.bottom, 10)
-                
-                // streaks
-                HStack (spacing: 0) {
-                    Spacer()
-                    
-                    Text("3")
-                    Image(systemName: "flame.fill")
-                        .padding(.trailing, 10.0)
-                    
-                    Text("ENDS STREAK")
-                    
-                    Spacer()
-                }
-                .padding(.bottom, 50)
-                
-                
-                Spacer()
-                
-                // tab bar
+        VStack {
+            Text("Alarms")
+                .font(.largeTitle)
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+            
+            // repeat per alarm added
+            ForEach(alarms.sorted(by: { $0.key < $1.key }), id: \.key) { (time, active) in
                 HStack {
-                    Spacer()
-                    
-                    NavigationLink(destination: ProfileView()) {
-                        Image(systemName: "person.crop.circle")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
+                    Toggle(isOn: Binding(
+                        get: { alarms[time] ?? false },
+                        set: { alarms[time] = $0 }
+                    )) {
+                        Text(timeToString(time: time))
                     }
-                    .padding(.vertical, 10)
-                    
-                    Spacer()
-                    
-                    NavigationLink(destination: AlarmView()) {
-                        Image(systemName: "plus.circle")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 60, height: 60)
-                    }
-                    .padding(.bottom, 20)
-                    
-                    Spacer()
-                    
-                    NavigationLink(destination: ChatView()) {
-                        Image(systemName: "ellipsis.message")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                    }
-                    .padding(.vertical, 10)
-                    
-                    Spacer()
+                    .toggleStyle(.switch)
                 }
-                .background(Color(.lightGray))
+                .padding()
             }
+            
+            Spacer()
+            
+            // plus button to add alarms
+            Button("Add Alarm", systemImage: "plus.circle", action: addAlarm)
+                .labelStyle(.iconOnly)
+                .padding()
         }
     }
 }
 
-#Preview {
-    ContentView()
+func addAlarm() {
+    // TODO: implement
+}
+    
+func stringToTime(str: String) -> Date {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "hh:mm a"
+    return dateFormatter.date(from: str)!
+}
+
+func timeToString(time: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "hh:mm a"
+    return dateFormatter.string(from: time)
 }

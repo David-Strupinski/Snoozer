@@ -9,25 +9,54 @@ import Foundation
 import SwiftUI
 
 struct ChatView: View {
+    @State private var chats: [Chat] = [
+        Chat(name: "David"),
+        Chat(name: "Nathan"),
+        Chat(name: "Amy"),
+        Chat(name: "Aaleah")
+    ]
+
     var body: some View {
         VStack {
-            Text("Friends Chat")
+            Text("Chats")
+                .font(.largeTitle)
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+            
+            Divider()
             
             // chat previews (repeat per person)
-            VStack {
-                HStack {
-                    Text("Name")
-                    Text("Time")
+            List(chats) { chat in
+                VStack {
+                    HStack {
+                        Text(chat.name)
+                        
+                        Spacer()
+                        
+                        Text(chat.time)
+                    }
+                    
+                    // last text preview
+                    Text(chat.getLastMessage())
+                        .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
                 }
-                
-                // last text preview
-                Text("last message")
             }
-            .border(Color(.black))
         }
     }
 }
 
-#Preview {
-    ChatView()
+class Chat: Identifiable {
+    var id = UUID()
+    var name: String
+    var lastMessage = ""
+    var time = ""
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    func getLastMessage() -> String {
+        self.lastMessage = "test"
+        self.time = timeToString(time: Date())
+        return self.lastMessage
+    }
 }
