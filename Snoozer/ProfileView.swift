@@ -14,7 +14,9 @@ struct ProfileView: View {
             Spacer()
             
             Image(systemName: "person.crop.circle")
-                .imageScale(.large)
+                .resizable()
+                .frame(width: 200, height: 200)
+                .foregroundColor(.gray)
             
             Text("name")
             
