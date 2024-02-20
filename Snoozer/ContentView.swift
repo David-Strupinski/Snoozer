@@ -18,43 +18,44 @@ struct ContentView: View {
     ]
     
     var body: some View {
-        VStack {
-            Text("Alarms")
-                .font(.largeTitle)
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-            
-            // repeat per alarm added
-            ForEach(alarms.sorted(by: { $0.key < $1.key }), id: \.key) { (time, active) in
-                HStack {
-                    Toggle(isOn: Binding(
-                        get: { alarms[time] ?? false },
-                        set: { alarms[time] = $0 }
-                    )) {
-                        Text(timeToString(time: time))
+        NavigationView {
+            VStack {
+                Text("Alarms")
+                    .font(.largeTitle)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                
+                // repeat per alarm added
+                ForEach(alarms.sorted(by: { $0.key < $1.key }), id: \.key) { (time, active) in
+                    NavigationLink(destination: AlarmEditDetail()) {
+                        HStack {
+                            Toggle(isOn: Binding(
+                                get: { alarms[time] ?? false },
+                                set: { alarms[time] = $0 }
+                            )) {
+                                Text(timeToString(time: time))
+                            }
+                            .toggleStyle(.switch)
+                        }
+                        .padding()
                     }
-                    .toggleStyle(.switch)
+                    .buttonStyle(PlainButtonStyle())
                 }
-                .padding()
-            }
-            
-            Spacer()
-            
-            // plus button to add alarms
-            Button(action: addAlarm) {
-                Image(systemName: "plus.circle")
-                    .resizable()
-                    .frame(width: 70, height: 70)
-                    .foregroundColor(.black)
-                    .background(Color.yellow)
-                    .clipShape(Circle())
-                    .padding()
+                
+                Spacer()
+                
+                // plus button to add alarms
+                NavigationLink(destination: AlarmAddDetail()) {
+                    Image(systemName: "plus.circle")
+                        .resizable()
+                        .frame(width: 70, height: 70)
+                        .foregroundColor(.black)
+                        .background(Color.yellow)
+                        .clipShape(Circle())
+                        .padding()
+                }
             }
         }
     }
-}
-
-func addAlarm() {
-    // TODO: implement
 }
     
 func stringToTime(str: String) -> Date {

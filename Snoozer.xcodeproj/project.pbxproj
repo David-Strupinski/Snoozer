@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		365AF5962B8540C600EBBA7B /* VibrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AF5952B8540C600EBBA7B /* VibrationManager.swift */; };
 		6F69AF5C2B8295CD00E32D9A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69AF5B2B8295CD00E32D9A /* MainView.swift */; };
+		6F69AF5E2B8545F000E32D9A /* AlarmEditDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69AF5D2B8545F000E32D9A /* AlarmEditDetail.swift */; };
+		6F69AF602B8545FC00E32D9A /* AlarmAddDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69AF5F2B8545FC00E32D9A /* AlarmAddDetail.swift */; };
+		6F69AF622B8547B800E32D9A /* ChatDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69AF612B8547B800E32D9A /* ChatDetail.swift */; };
 		6F6AB24F2B7571B1003427C8 /* SnoozerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6AB24E2B7571B1003427C8 /* SnoozerApp.swift */; };
 		6F6AB2512B7571B1003427C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6AB2502B7571B1003427C8 /* ContentView.swift */; };
 		6F6AB2532B7571B2003427C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F6AB2522B7571B2003427C8 /* Assets.xcassets */; };
@@ -42,6 +45,9 @@
 /* Begin PBXFileReference section */
 		365AF5952B8540C600EBBA7B /* VibrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationManager.swift; sourceTree = "<group>"; };
 		6F69AF5B2B8295CD00E32D9A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		6F69AF5D2B8545F000E32D9A /* AlarmEditDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmEditDetail.swift; sourceTree = "<group>"; };
+		6F69AF5F2B8545FC00E32D9A /* AlarmAddDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAddDetail.swift; sourceTree = "<group>"; };
+		6F69AF612B8547B800E32D9A /* ChatDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetail.swift; sourceTree = "<group>"; };
 		6F6AB24B2B7571B1003427C8 /* Snoozer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snoozer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F6AB24E2B7571B1003427C8 /* SnoozerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnoozerApp.swift; sourceTree = "<group>"; };
 		6F6AB2502B7571B1003427C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,7 +115,10 @@
 				6F6AB24E2B7571B1003427C8 /* SnoozerApp.swift */,
 				6F6AB2502B7571B1003427C8 /* ContentView.swift */,
 				6F69AF5B2B8295CD00E32D9A /* MainView.swift */,
+				6F69AF5D2B8545F000E32D9A /* AlarmEditDetail.swift */,
 				6F6AB27C2B7812F7003427C8 /* AlarmView.swift */,
+				6F69AF612B8547B800E32D9A /* ChatDetail.swift */,
+				6F69AF5F2B8545FC00E32D9A /* AlarmAddDetail.swift */,
 				6F6AB27E2B781329003427C8 /* ChatView.swift */,
 				365AF5952B8540C600EBBA7B /* VibrationManager.swift */,
 				6F6AB27A2B7810E3003427C8 /* ProfileView.swift */,
@@ -277,8 +286,11 @@
 			files = (
 				6F6AB2512B7571B1003427C8 /* ContentView.swift in Sources */,
 				6F69AF5C2B8295CD00E32D9A /* MainView.swift in Sources */,
+				6F69AF5E2B8545F000E32D9A /* AlarmEditDetail.swift in Sources */,
 				365AF5962B8540C600EBBA7B /* VibrationManager.swift in Sources */,
+				6F69AF602B8545FC00E32D9A /* AlarmAddDetail.swift in Sources */,
 				DBE2D1FB2B7D7C5700F68C3D /* TriviaView.swift in Sources */,
+				6F69AF622B8547B800E32D9A /* ChatDetail.swift in Sources */,
 				6F6AB27B2B7810E3003427C8 /* ProfileView.swift in Sources */,
 				6F6AB27F2B781329003427C8 /* ChatView.swift in Sources */,
 				6F6AB27D2B7812F7003427C8 /* AlarmView.swift in Sources */,

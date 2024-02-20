@@ -17,38 +17,36 @@ struct ChatView: View {
     ]
 
     var body: some View {
-        VStack {
-            Text("Chats")
-                .font(.largeTitle)
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-            
-            Divider()
-            
-            // chat previews (repeat per person)
-            List(chats) { chat in
-                Button(action: goToChat) {  // TODO: navigationLink instead?
-                    VStack {
-                        HStack {
-                            Text(chat.name)
+        NavigationView {
+            VStack {
+                Text("Chats")
+                    .font(.largeTitle)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                
+                Divider()
+                
+                // chat previews (repeat per person)
+                List(chats) { chat in
+                    NavigationLink(destination: ChatDetail()) {
+                        VStack {
+                            HStack {
+                                Text(chat.name)
+                                
+                                Spacer()
+                                
+                                Text(chat.time)
+                            }
                             
-                            Spacer()
-                            
-                            Text(chat.time)
+                            // last text preview
+                            Text(chat.getLastMessage())
+                                .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
                         }
-                        
-                        // last text preview
-                        Text(chat.getLastMessage())
-                            .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
                     }
+                    .buttonStyle(PlainButtonStyle())
                 }
-                .buttonStyle(PlainButtonStyle())
             }
         }
     }
-}
-
-func goToChat() {
-    print("hi")
 }
 
 class Chat: Identifiable {
