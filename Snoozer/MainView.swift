@@ -33,6 +33,13 @@ struct MainView: View {
     }
 }
 
+struct User {
+    var name: String
+    var phone: String
+    var curStreak: Int
+    var longestStreak: Int
+}
+
 #Preview {
     MainView()
 }
