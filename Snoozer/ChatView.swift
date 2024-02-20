@@ -26,22 +26,29 @@ struct ChatView: View {
             
             // chat previews (repeat per person)
             List(chats) { chat in
-                VStack {
-                    HStack {
-                        Text(chat.name)
+                Button(action: goToChat) {  // TODO: navigationLink instead?
+                    VStack {
+                        HStack {
+                            Text(chat.name)
+                            
+                            Spacer()
+                            
+                            Text(chat.time)
+                        }
                         
-                        Spacer()
-                        
-                        Text(chat.time)
+                        // last text preview
+                        Text(chat.getLastMessage())
+                            .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
                     }
-                    
-                    // last text preview
-                    Text(chat.getLastMessage())
-                        .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
                 }
+                .buttonStyle(PlainButtonStyle())
             }
         }
     }
+}
+
+func goToChat() {
+    print("hi")
 }
 
 class Chat: Identifiable {
