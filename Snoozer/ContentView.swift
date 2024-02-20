@@ -40,9 +40,15 @@ struct ContentView: View {
             Spacer()
             
             // plus button to add alarms
-            Button("Add Alarm", systemImage: "plus.circle", action: addAlarm)
-                .labelStyle(.iconOnly)
-                .padding()
+            Button(action: addAlarm) {
+                Image(systemName: "plus.circle")
+                    .resizable()
+                    .frame(width: 70, height: 70)
+                    .foregroundColor(.black)
+                    .background(Color.yellow)
+                    .clipShape(Circle())
+                    .padding()
+            }
         }
     }
 }
