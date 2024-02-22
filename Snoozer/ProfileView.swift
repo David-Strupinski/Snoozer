@@ -22,14 +22,13 @@ struct ProfileView: View {
             
             Text("XXX-XXX-XXXX")
             
-            Spacer()
-            
-            // streaks leaderboard
             Text("Current Streak: ")
             
             Text("Longest Streak: ")
             
             Spacer()
+            // Streaks leaderboard
+            Text("Friends Leaderboard")
         }
     }
 }
