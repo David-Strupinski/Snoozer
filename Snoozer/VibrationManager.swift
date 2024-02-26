@@ -14,7 +14,7 @@ class SoundManager {
     var player: AVAudioPlayer?
     
     func playSound() {
-        guard let url = URL(string: "") else { return }
+        guard let url = Bundle.main.url(forResource: "alarm", withExtension: ".mp3") else { return }
         
         do {
             player = try AVAudioPlayer(contentsOf: url)
@@ -22,12 +22,24 @@ class SoundManager {
         } catch let error {
             print("Error playing sound. \(error.localizedDescription)")
         }
-        
-        
     }
 }
-//
-//struct VibrationManager: View {
-//    var soundManager = SoundManager()
-//    
-//}
+
+struct VibrationManager: View {
+    var body: some View {
+        VStack(spacing:40) {
+            Button("Play Sound 1") {
+                SoundManager.instance.playSound()
+            }
+            Button("Play Sound 2") {
+                
+            }
+        }
+    }
+}
+
+struct VibrationManager_Previews: PreviewProvider {
+    static var previews: some View {
+        VibrationManager()
+    }
+}

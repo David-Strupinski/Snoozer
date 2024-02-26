@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3626F47F2B8D54BC0059510B /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3626F47E2B8D54BC0059510B /* HapticsManager.swift */; };
 		365AF5962B8540C600EBBA7B /* VibrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AF5952B8540C600EBBA7B /* VibrationManager.swift */; };
 		365AF59A2B85444600EBBA7B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AF5992B85444600EBBA7B /* LoadingView.swift */; };
 		36AB0ED22B8AD9390069AB4D /* alarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 36AB0ED12B8AD9390069AB4D /* alarm.mp3 */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3626F47E2B8D54BC0059510B /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		365AF5952B8540C600EBBA7B /* VibrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationManager.swift; sourceTree = "<group>"; };
 		365AF5992B85444600EBBA7B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		36AB0ED12B8AD9390069AB4D /* alarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm.mp3; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				6F6AB27E2B781329003427C8 /* ChatView.swift */,
 				365AF5992B85444600EBBA7B /* LoadingView.swift */,
 				365AF5952B8540C600EBBA7B /* VibrationManager.swift */,
+				3626F47E2B8D54BC0059510B /* HapticsManager.swift */,
 				36AB0ED02B8AD8950069AB4D /* Sounds */,
 				6F6AB27A2B7810E3003427C8 /* ProfileView.swift */,
 				DBE2D1FA2B7D7C5700F68C3D /* TriviaView.swift */,
@@ -308,6 +311,7 @@
 				6F69AF622B8547B800E32D9A /* ChatDetail.swift in Sources */,
 				6F6AB27B2B7810E3003427C8 /* ProfileView.swift in Sources */,
 				6F6AB27F2B781329003427C8 /* ChatView.swift in Sources */,
+				3626F47F2B8D54BC0059510B /* HapticsManager.swift in Sources */,
 				6F6AB27D2B7812F7003427C8 /* AlarmView.swift in Sources */,
 				6F6AB24F2B7571B1003427C8 /* SnoozerApp.swift in Sources */,
 				365AF59A2B85444600EBBA7B /* LoadingView.swift in Sources */,
