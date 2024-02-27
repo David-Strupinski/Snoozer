@@ -8,11 +8,27 @@
 import SwiftUI
 
 struct AlarmAddDetail: View {
+    @State private var time = Date()
+    @Binding var alarms: [Date: Bool]
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            Form {
+                Section {
+                    DatePicker("Choose an Alarm Time", selection: $time, displayedComponents: .hourAndMinute)
+                }
+                
+                Section {
+                    // TODO: for days of week
+                }
+                
+                Button("Submit") {
+                    alarms[time] = true
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
+        }
+        .navigationTitle("Add Alarm")
     }
-}
-
-#Preview {
-    AlarmAddDetail()
 }

@@ -10,12 +10,8 @@ import UIKit
 import CoreHaptics
 
 struct ContentView: View {
-    // TODO: make this more global to hold state past this page?
-    @State private var alarms: [Date: Bool] = [
-        stringToTime(str: "7:00 AM"): true,
-        stringToTime(str: "8:00 AM"): false,
-        stringToTime(str: "10:00 PM"): true
-    ]
+    // TODO: convert to [Date: [Weekday: Bool]] dict for per day control
+    @State private var alarms: [Date: Bool] = [:]
     
     var body: some View {
         NavigationView {
@@ -25,26 +21,37 @@ struct ContentView: View {
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 
                 // repeat per alarm added
-                ForEach(alarms.sorted(by: { $0.key < $1.key }), id: \.key) { (time, active) in
-                    NavigationLink(destination: AlarmEditDetail()) {
-                        HStack {
-                            Toggle(isOn: Binding(
-                                get: { alarms[time] ?? false },
-                                set: { alarms[time] = $0 }
-                            )) {
-                                Text(timeToString(time: time))
+                if alarms.isEmpty {
+                    Spacer()
+                    
+                    Text("No alarms. Add below")
+                        .foregroundStyle(.gray)
+                } else {
+                    Divider()
+                    
+                    ForEach(alarms.sorted(by: { $0.key < $1.key }), id: \.key) { (time, active) in
+                        NavigationLink(destination: AlarmEditDetail(alarms: $alarms, timeIndex: time)) {
+                            HStack {
+                                Toggle(isOn: Binding(
+                                    get: { alarms[time] ?? false },
+                                    set: { alarms[time] = $0 }
+                                )) {
+                                    Text(timeToString(time: time))
+                                }
+                                .toggleStyle(.switch)
                             }
-                            .toggleStyle(.switch)
+                            .padding()
                         }
-                        .padding()
+                        .buttonStyle(PlainButtonStyle())
+                        
+                        Divider()
                     }
-                    .buttonStyle(PlainButtonStyle())
                 }
                 
                 Spacer()
                 
                 // plus button to add alarms
-                NavigationLink(destination: AlarmAddDetail()) {
+                NavigationLink(destination: AlarmAddDetail(alarms: $alarms)) {
                     Image(systemName: "plus.circle")
                         .resizable()
                         .frame(width: 70, height: 70)
@@ -54,6 +61,22 @@ struct ContentView: View {
                         .padding()
                 }
             }
+        }
+    }
+}
+
+enum Weekday: Int, CaseIterable {
+    case sunday = 0, monday, tuesday, wednesday, thursday, friday, saturday
+    
+    var name: String {
+        switch self {
+        case .sunday: return "Sunday"
+        case .monday: return "Monday"
+        case .tuesday: return "Tuesday"
+        case .wednesday: return "Wednesday"
+        case .thursday: return "Thursday"
+        case .friday: return "Friday"
+        case .saturday: return "Saturday"
         }
     }
 }
