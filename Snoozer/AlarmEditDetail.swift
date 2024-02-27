@@ -24,7 +24,7 @@ struct AlarmEditDetail: View {
                 }
                 
                 Section {
-                    
+                    // TODO: for days of week
                 }
                 
                 Button("Submit") {

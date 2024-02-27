@@ -27,6 +27,8 @@ struct ContentView: View {
                     Text("No alarms. Add below")
                         .foregroundStyle(.gray)
                 } else {
+                    Divider()
+                    
                     ForEach(alarms.sorted(by: { $0.key < $1.key }), id: \.key) { (time, active) in
                         NavigationLink(destination: AlarmEditDetail(alarms: $alarms, timeIndex: time)) {
                             HStack {
@@ -41,6 +43,8 @@ struct ContentView: View {
                             .padding()
                         }
                         .buttonStyle(PlainButtonStyle())
+                        
+                        Divider()
                     }
                 }
                 

@@ -15,7 +15,13 @@ struct AlarmAddDetail: View {
     var body: some View {
         NavigationView {
             Form {
-                DatePicker("Choose an Alarm Time", selection: $time, displayedComponents: .hourAndMinute)
+                Section {
+                    DatePicker("Choose an Alarm Time", selection: $time, displayedComponents: .hourAndMinute)
+                }
+                
+                Section {
+                    // TODO: for days of week
+                }
                 
                 Button("Submit") {
                     alarms[time] = true
