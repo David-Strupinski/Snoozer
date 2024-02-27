@@ -10,7 +10,6 @@ import UIKit
 import CoreHaptics
 
 struct ContentView: View {
-    // TODO: make this more global to hold state past this page?
     @State private var alarms: [Date: Bool] = [
         stringToTime(str: "7:00 AM"): true,
         stringToTime(str: "8:00 AM"): false,
@@ -44,7 +43,7 @@ struct ContentView: View {
                 Spacer()
                 
                 // plus button to add alarms
-                NavigationLink(destination: AlarmAddDetail()) {
+                NavigationLink(destination: AlarmAddDetail(alarms: $alarms)) {
                     Image(systemName: "plus.circle")
                         .resizable()
                         .frame(width: 70, height: 70)
