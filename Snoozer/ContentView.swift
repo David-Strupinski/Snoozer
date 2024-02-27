@@ -10,6 +10,7 @@ import UIKit
 import CoreHaptics
 
 struct ContentView: View {
+    // TODO: convert to [Date: [Weekday: Bool]] dict for per day control
     @State private var alarms: [Date: Bool] = [:]
     
     var body: some View {
@@ -27,7 +28,7 @@ struct ContentView: View {
                         .foregroundStyle(.gray)
                 } else {
                     ForEach(alarms.sorted(by: { $0.key < $1.key }), id: \.key) { (time, active) in
-                        NavigationLink(destination: AlarmEditDetail()) {
+                        NavigationLink(destination: AlarmEditDetail(alarms: $alarms, timeIndex: time)) {
                             HStack {
                                 Toggle(isOn: Binding(
                                     get: { alarms[time] ?? false },
@@ -56,6 +57,22 @@ struct ContentView: View {
                         .padding()
                 }
             }
+        }
+    }
+}
+
+enum Weekday: Int, CaseIterable {
+    case sunday = 0, monday, tuesday, wednesday, thursday, friday, saturday
+    
+    var name: String {
+        switch self {
+        case .sunday: return "Sunday"
+        case .monday: return "Monday"
+        case .tuesday: return "Tuesday"
+        case .wednesday: return "Wednesday"
+        case .thursday: return "Thursday"
+        case .friday: return "Friday"
+        case .saturday: return "Saturday"
         }
     }
 }
