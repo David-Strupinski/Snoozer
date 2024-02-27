@@ -10,11 +10,7 @@ import UIKit
 import CoreHaptics
 
 struct ContentView: View {
-    @State private var alarms: [Date: Bool] = [
-        stringToTime(str: "7:00 AM"): true,
-        stringToTime(str: "8:00 AM"): false,
-        stringToTime(str: "10:00 PM"): true
-    ]
+    @State private var alarms: [Date: Bool] = [:]
     
     var body: some View {
         NavigationView {
@@ -24,20 +20,27 @@ struct ContentView: View {
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 
                 // repeat per alarm added
-                ForEach(alarms.sorted(by: { $0.key < $1.key }), id: \.key) { (time, active) in
-                    NavigationLink(destination: AlarmEditDetail()) {
-                        HStack {
-                            Toggle(isOn: Binding(
-                                get: { alarms[time] ?? false },
-                                set: { alarms[time] = $0 }
-                            )) {
-                                Text(timeToString(time: time))
+                if alarms.isEmpty {
+                    Spacer()
+                    
+                    Text("No alarms. Add below")
+                        .foregroundStyle(.gray)
+                } else {
+                    ForEach(alarms.sorted(by: { $0.key < $1.key }), id: \.key) { (time, active) in
+                        NavigationLink(destination: AlarmEditDetail()) {
+                            HStack {
+                                Toggle(isOn: Binding(
+                                    get: { alarms[time] ?? false },
+                                    set: { alarms[time] = $0 }
+                                )) {
+                                    Text(timeToString(time: time))
+                                }
+                                .toggleStyle(.switch)
                             }
-                            .toggleStyle(.switch)
+                            .padding()
                         }
-                        .padding()
+                        .buttonStyle(PlainButtonStyle())
                     }
-                    .buttonStyle(PlainButtonStyle())
                 }
                 
                 Spacer()
