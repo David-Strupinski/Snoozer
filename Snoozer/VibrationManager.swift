@@ -13,8 +13,13 @@ class SoundManager {
     
     var player: AVAudioPlayer?
     
-    func playSound() {
-        guard let url = Bundle.main.url(forResource: "alarm", withExtension: ".mp3") else { return }
+    enum SoundOption: String {
+        case alarm
+        case softalarm
+    }
+    
+    func playSound(sound: SoundOption) {
+        guard let url = Bundle.main.url(forResource: sound.rawValue, withExtension: ".mp3") else { return }
         
         do {
             player = try AVAudioPlayer(contentsOf: url)
@@ -29,10 +34,10 @@ struct VibrationManager: View {
     var body: some View {
         VStack(spacing:40) {
             Button("Play Sound 1") {
-                SoundManager.instance.playSound()
+                SoundManager.instance.playSound(sound: .alarm)
             }
             Button("Play Sound 2") {
-                
+                SoundManager.instance.playSound(sound: .softalarm)
             }
         }
     }

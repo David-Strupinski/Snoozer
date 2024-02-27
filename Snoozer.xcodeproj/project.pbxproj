@@ -10,6 +10,7 @@
 		3626F47F2B8D54BC0059510B /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3626F47E2B8D54BC0059510B /* HapticsManager.swift */; };
 		365AF5962B8540C600EBBA7B /* VibrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AF5952B8540C600EBBA7B /* VibrationManager.swift */; };
 		365AF59A2B85444600EBBA7B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AF5992B85444600EBBA7B /* LoadingView.swift */; };
+		365E64432B8E64970001B29D /* softalarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 365E64422B8E64960001B29D /* softalarm.mp3 */; };
 		36AB0ED22B8AD9390069AB4D /* alarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 36AB0ED12B8AD9390069AB4D /* alarm.mp3 */; };
 		6F69AF5C2B8295CD00E32D9A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69AF5B2B8295CD00E32D9A /* MainView.swift */; };
 		6F69AF5E2B8545F000E32D9A /* AlarmEditDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69AF5D2B8545F000E32D9A /* AlarmEditDetail.swift */; };
@@ -49,6 +50,7 @@
 		3626F47E2B8D54BC0059510B /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		365AF5952B8540C600EBBA7B /* VibrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationManager.swift; sourceTree = "<group>"; };
 		365AF5992B85444600EBBA7B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		365E64422B8E64960001B29D /* softalarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = softalarm.mp3; sourceTree = "<group>"; };
 		36AB0ED12B8AD9390069AB4D /* alarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm.mp3; sourceTree = "<group>"; };
 		6F69AF5B2B8295CD00E32D9A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		6F69AF5D2B8545F000E32D9A /* AlarmEditDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmEditDetail.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				36AB0ED12B8AD9390069AB4D /* alarm.mp3 */,
+				365E64422B8E64960001B29D /* softalarm.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				365E64432B8E64970001B29D /* softalarm.mp3 in Resources */,
 				6F6AB2562B7571B2003427C8 /* Preview Assets.xcassets in Resources */,
 				6F6AB2532B7571B2003427C8 /* Assets.xcassets in Resources */,
 				36AB0ED22B8AD9390069AB4D /* alarm.mp3 in Resources */,
