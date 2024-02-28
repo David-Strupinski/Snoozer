@@ -35,6 +35,12 @@ struct AlarmEditDetail: View {
                     }
                     self.presentationMode.wrappedValue.dismiss()
                 }
+                
+                Button("Delete") {
+                    alarms.removeValue(forKey: timeIndex)
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                .foregroundStyle(.red)
             }
         }
         .navigationTitle("Edit Alarm")

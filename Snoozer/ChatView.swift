@@ -23,8 +23,6 @@ struct ChatView: View {
                     .font(.largeTitle)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 
-                Divider()
-                
                 // chat previews (repeat per person)
                 List(chats) { chat in
                     NavigationLink(destination: ChatDetail()) {
