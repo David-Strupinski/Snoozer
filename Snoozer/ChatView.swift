@@ -24,6 +24,7 @@ struct ChatView: View {
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 
                 // chat previews (repeat per person)
+                Divider()
                 List(chats) { chat in
                     NavigationLink(destination: ChatDetail()) {
                         VStack {
@@ -42,6 +43,7 @@ struct ChatView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                 }
+                .scrollContentBackground(.hidden)
             }
         }
     }

@@ -21,6 +21,8 @@ struct ContentView: View {
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 
                 // repeat per alarm added
+                Divider()
+                
                 if alarms.isEmpty {
                     Spacer()
                     
@@ -42,7 +44,7 @@ struct ContentView: View {
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
-                    .background(.white)
+                    .scrollContentBackground(.hidden)
                 }
                 
                 Spacer()

@@ -9,6 +9,11 @@ import Foundation
 import SwiftUI
 
 struct ProfileView: View {
+    @Binding var name: String
+    @Binding var phone: String
+    @State private var currStreak = 0
+    @State private var longestStreak = 0
+    
     var body: some View {
         VStack {
             Spacer()
@@ -18,13 +23,13 @@ struct ProfileView: View {
                 .frame(width: 200, height: 200)
                 .foregroundColor(.gray)
             
-            Text("name")
+            Text(name)
             
-            Text("XXX-XXX-XXXX")
+            Text(phone)
             
-            Text("Current Streak: ")
+            Text("Current Streak: " + currStreak.formatted())
             
-            Text("Longest Streak: ")
+            Text("Longest Streak: " + longestStreak.formatted())
             
             Spacer()
             // Streaks leaderboard
