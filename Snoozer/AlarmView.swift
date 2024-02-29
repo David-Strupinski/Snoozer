@@ -5,6 +5,13 @@
 //  Created by David Strupinski on 2/10/24.
 //
 
+//
+//  AlarmView.swift
+//  Snoozer
+//
+//  Created by David Strupinski on 2/10/24.
+//
+
 import Foundation
 import SwiftUI
 
@@ -20,6 +27,8 @@ struct AlarmView: View {
                 .frame(width: 200, height: 200)
             
             Button(action: {
+                // Stop the sound and haptic feedback when the button is tapped
+                SoundManager.instance.player?.stop()
                 print("Alarm Stopped")
             }) {
                 Text("Stop Alarm")
@@ -44,8 +53,7 @@ struct AlarmView: View {
                     .clipShape(Capsule())
             }
             .padding(.bottom, 10)
-            
-            // streaks
+        
             HStack (spacing: 0) {
                 Spacer()
                 
@@ -59,5 +67,17 @@ struct AlarmView: View {
             }
             .padding(.bottom, 50)
         }
+        .onAppear {
+            // Play the alarm sound and trigger haptic feedback as soon as the view appears
+            SoundManager.instance.playSound(sound: .alarm)
+            HapticManager.instance.notification(type: .success) // Trigger haptic feedback
+        }
+    }
+}
+
+// Preview
+struct AlarmView_Previews: PreviewProvider {
+    static var previews: some View {
+        AlarmView()
     }
 }
