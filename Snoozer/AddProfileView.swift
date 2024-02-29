@@ -35,8 +35,10 @@ struct AddProfileView: View {
             }
             
             Button("Submit") {
-                loggedIn = true
-                MainView()
+                if !name.isEmpty {
+                    loggedIn = true
+                    MainView()
+                }
             }
         }
         .scrollContentBackground(.hidden)
