@@ -9,12 +9,8 @@ import Foundation
 import SwiftUI
 
 struct ChatView: View {
-    @State private var chats: [Chat] = [
-        Chat(name: "David"),
-        Chat(name: "Nathan"),
-        Chat(name: "Amy"),
-        Chat(name: "Aaleah")
-    ]
+    @Binding var friends: [User]
+    @State private var chats: [Chat] = []
 
     var body: some View {
         NavigationView {
@@ -29,7 +25,7 @@ struct ChatView: View {
                     NavigationLink(destination: ChatDetail()) {
                         VStack {
                             HStack {
-                                Text(chat.name)
+                                Text(chat.user.name)
                                 
                                 Spacer()
                                 
@@ -50,13 +46,12 @@ struct ChatView: View {
 }
 
 class Chat: Identifiable {
-    var id = UUID()
-    var name: String
+    var user: User
     var lastMessage = ""
     var time = ""
     
-    init(name: String) {
-        self.name = name
+    init(user: User) {
+        self.user = user
     }
     
     func getLastMessage() -> String {

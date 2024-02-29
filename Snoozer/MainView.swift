@@ -12,11 +12,17 @@ struct MainView: View {
     @State private var loggedIn = false
     @State private var name = ""
     @State private var phone = ""
+    @State var friends: [User] = [
+        User(name: "David", phone: "(253) 722-6439"),
+        User(name: "Amy", currStreak: 3),
+        User(name: "Nathan"),
+        User(name: "Aaleah")
+    ]
     
     var body: some View {
         if loggedIn {
             TabView(selection: $selection) {
-                ProfileView(name: $name, phone: $phone)
+                ProfileView(name: $name, phone: $phone, friends: $friends)
                     .tabItem {
                         Label("Profile", systemImage: "person.crop.circle")
                     }
@@ -28,7 +34,7 @@ struct MainView: View {
                     }
                     .tag(2)
                 
-                ChatView()
+                ChatView(friends: $friends)
                     .tabItem {
                         Label("Chat", systemImage: "ellipsis.message")
                     }
@@ -40,11 +46,21 @@ struct MainView: View {
     }
 }
 
-struct User {
+struct User: Identifiable {
+    var id = UUID()
     var name: String
-    var phone: String
-    var curStreak: Int
-    var longestStreak: Int
+    var phone: String?
+    var currStreak = 0
+    var longestStreak = 0
+}
+
+extension User {
+    var currStreakString: String {
+        String(currStreak)
+    }
+    var longestStreakString: String {
+        String(longestStreak)
+    }
 }
 
 extension String {
@@ -55,7 +71,7 @@ extension String {
         
         var result = ""
         var startIndex = cleanNumber.startIndex
-        var endIndex = cleanNumber.endIndex
+        let endIndex = cleanNumber.endIndex
         
         for char in mask where startIndex < endIndex {
             if char == "X" {
