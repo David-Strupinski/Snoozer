@@ -12,6 +12,7 @@
 		365AF59A2B85444600EBBA7B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AF5992B85444600EBBA7B /* LoadingView.swift */; };
 		365E64432B8E64970001B29D /* softalarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 365E64422B8E64960001B29D /* softalarm.mp3 */; };
 		36AB0ED22B8AD9390069AB4D /* alarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 36AB0ED12B8AD9390069AB4D /* alarm.mp3 */; };
+		36D179972B914AF500955F51 /* GyroscopeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D179962B914AF500955F51 /* GyroscopeManager.swift */; };
 		6F69AF5C2B8295CD00E32D9A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69AF5B2B8295CD00E32D9A /* MainView.swift */; };
 		6F69AF5E2B8545F000E32D9A /* AlarmEditDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69AF5D2B8545F000E32D9A /* AlarmEditDetail.swift */; };
 		6F69AF602B8545FC00E32D9A /* AlarmAddDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69AF5F2B8545FC00E32D9A /* AlarmAddDetail.swift */; };
@@ -53,6 +54,7 @@
 		365AF5992B85444600EBBA7B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		365E64422B8E64960001B29D /* softalarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = softalarm.mp3; sourceTree = "<group>"; };
 		36AB0ED12B8AD9390069AB4D /* alarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm.mp3; sourceTree = "<group>"; };
+		36D179962B914AF500955F51 /* GyroscopeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroscopeManager.swift; sourceTree = "<group>"; };
 		6F69AF5B2B8295CD00E32D9A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		6F69AF5D2B8545F000E32D9A /* AlarmEditDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmEditDetail.swift; sourceTree = "<group>"; };
 		6F69AF5F2B8545FC00E32D9A /* AlarmAddDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAddDetail.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				365AF5992B85444600EBBA7B /* LoadingView.swift */,
 				365AF5952B8540C600EBBA7B /* VibrationManager.swift */,
 				3626F47E2B8D54BC0059510B /* HapticsManager.swift */,
+				36D179962B914AF500955F51 /* GyroscopeManager.swift */,
 				36AB0ED02B8AD8950069AB4D /* Sounds */,
 				6F6AB27A2B7810E3003427C8 /* ProfileView.swift */,
 				DBE2D1FA2B7D7C5700F68C3D /* TriviaView.swift */,
@@ -312,6 +315,7 @@
 				6F69AF642B91171400E32D9A /* AddProfileView.swift in Sources */,
 				6F6AB2512B7571B1003427C8 /* ContentView.swift in Sources */,
 				6F69AF5C2B8295CD00E32D9A /* MainView.swift in Sources */,
+				36D179972B914AF500955F51 /* GyroscopeManager.swift in Sources */,
 				6F69AF5E2B8545F000E32D9A /* AlarmEditDetail.swift in Sources */,
 				365AF5962B8540C600EBBA7B /* VibrationManager.swift in Sources */,
 				6F69AF602B8545FC00E32D9A /* AlarmAddDetail.swift in Sources */,

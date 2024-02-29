@@ -5,17 +5,12 @@
 //  Created by David Strupinski on 2/10/24.
 //
 
-//
-//  AlarmView.swift
-//  Snoozer
-//
-//  Created by David Strupinski on 2/10/24.
-//
-
 import Foundation
 import SwiftUI
 
 struct AlarmView: View {
+    @State private var isAlarmOn = true
+    
     var body: some View {
         VStack {
             Text("7:00")
@@ -70,14 +65,32 @@ struct AlarmView: View {
         .onAppear {
             // Play the alarm sound and trigger haptic feedback as soon as the view appears
             SoundManager.instance.playSound(sound: .alarm)
-            HapticManager.instance.notification(type: .success) // Trigger haptic feedback
+            // Trigger haptic feedback
+            HapticManager.instance.notification(type: .success)
+            GyroscopeManager.shared.startMonitoring()
+            GyroscopeManager.shared.isUpright = { upright in
+                if upright {
+                    // Stop the Alarm if the phone is upright
+                    self.stopAlarm()
+                }
+            }
+        }
+        .onDisappear {
+            GyroscopeManager.shared.stopMonitoring() // Stop monitoring when the view disappears
         }
     }
+    
+    func stopAlarm() {
+        isAlarmOn = false
+        SoundManager.instance.player?.stop() // Stops the alarm sound
+        GyroscopeManager.shared.stopMonitoring() // Stops gyroscope mechanism
+    }
+
 }
 
 // Preview
-struct AlarmView_Previews: PreviewProvider {
-    static var previews: some View {
-        AlarmView()
-    }
-}
+// struct AlarmView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AlarmView()
+//    }
+//}

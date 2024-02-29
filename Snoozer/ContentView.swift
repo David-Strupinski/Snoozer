@@ -10,31 +10,35 @@ import UIKit
 import CoreHaptics
 
 struct ContentView: View {
-    // TODO: convert to [Date: [Weekday: Bool]] dict for per day control
     @State private var alarms: [Date: Bool] = [:]
-    
+    @State private var showAlarmView = false // State to control the presentation of AlarmView
+
+    let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect() // Timer to check every minute
+
     var body: some View {
         NavigationView {
             VStack {
                 Text("Alarms")
                     .font(.largeTitle)
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .fontWeight(.bold)
                 
-                // repeat per alarm added
+                // Repeat per alarm added
                 Divider()
                 
                 if alarms.isEmpty {
                     Spacer()
-                    
                     Text("No alarms. Add below")
                         .foregroundStyle(.gray)
                 } else {
-                    List(alarms.sorted(by: { $0.key < $1.key }), id: \.key) { (time, active) in
+                    List(alarms.sorted(by: { $0.key < $1.key }), id: \.key) { time, isActive in
                         NavigationLink(destination: AlarmEditDetail(alarms: $alarms, timeIndex: time)) {
                             HStack {
                                 Toggle(isOn: Binding(
                                     get: { alarms[time] ?? false },
-                                    set: { alarms[time] = $0 }
+                                    set: { newValue in
+                                        // Update the state without removing the alarm
+                                        alarms[time] = newValue
+                                    }
                                 )) {
                                     Text(timeToString(time: time))
                                 }
@@ -49,7 +53,7 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                // plus button to add alarms
+                // Plus button to add alarms
                 NavigationLink(destination: AlarmAddDetail(alarms: $alarms)) {
                     Image(systemName: "plus.circle")
                         .resizable()
@@ -59,6 +63,24 @@ struct ContentView: View {
                         .clipShape(Circle())
                         .padding(.vertical)
                 }
+            }
+        }
+        .onReceive(timer) { _ in
+            checkAlarms() // Check alarms every minute
+        }
+        .sheet(isPresented: $showAlarmView) {
+            // Present AlarmView when an alarm is triggered
+            AlarmView()
+        }
+    }
+    
+    func checkAlarms() {
+        let now = Date()
+        for (alarmTime, isActive) in alarms {
+            if isActive && Calendar.current.isDate(now, equalTo: alarmTime, toGranularity: .minute) {
+                // Trigger the AlarmView when the current time matches an alarm time
+                showAlarmView = true
+                break // Stop checking once an alarm is triggered
             }
         }
     }
@@ -90,4 +112,8 @@ func timeToString(time: Date) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "hh:mm a"
     return dateFormatter.string(from: time)
+}
+
+#Preview {
+    ContentView()
 }
