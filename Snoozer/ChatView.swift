@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UIKit
 
 struct ChatView: View {
     @Binding var friends: [User]
@@ -60,3 +61,60 @@ class Chat: Identifiable {
         return self.lastMessage
     }
 }
+
+// Managing the chat rows
+
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var messageTextField: UITextField!
+    
+    var messages: [String] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
+        cell.textLabel?.text = messages[indexPath.row]
+        return cell
+    }
+    
+    @IBAction func sendMessage(_ sender: UIButton) {
+        if let message = messageTextField.text, !message.isEmpty {
+            messages.append(message)
+            tableView.reloadData()
+            messageTextField.text = ""
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Get the selected message
+        let selectedMessage = messages[indexPath.row]
+
+        // Perform the segue
+        performSegue(withIdentifier: "Show segue to View Controller", sender: selectedMessage)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Show segue to View Controller" {
+//            if let ViewController = segue.destination as? TitleScene {
+//                // Pass any data you need to the chat view controller
+//                if let message = sender as? String {
+//                    ViewController.message = message
+//                }
+//            }
+        }
+    }
+}
+
+//#Preview {
+//    ChatStoryboard()
+//}
+
