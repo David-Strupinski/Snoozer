@@ -39,6 +39,7 @@ struct ProfileView: View {
             Text("Longest Streak: " + longestStreak.formatted())
             
             Spacer()
+            
             // Streaks leaderboard
             List {
                 HStack {

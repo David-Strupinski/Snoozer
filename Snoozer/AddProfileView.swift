@@ -12,6 +12,8 @@ struct AddProfileView: View {
     @Binding var phone: String
     @Binding var loggedIn: Bool
     @Environment(\.presentationMode) var presentationMode
+    @FocusState private var nameFocused: Bool
+    @FocusState private var numberFocused: Bool
     
     var body: some View {
         Text("Create Your Profile")
@@ -23,6 +25,10 @@ struct AddProfileView: View {
         Form {
             Section("Name") {
                 TextField("Enter your name", text: $name)
+                    .focused($nameFocused)
+                    .onTapGesture {
+                        nameFocused = true
+                    }
             }
             
             Section("Phone") {
@@ -31,6 +37,10 @@ struct AddProfileView: View {
                         if !phone.isEmpty {
                             phone = phone.formatPhoneNumber()
                         }
+                    }
+                    .focused($numberFocused)
+                    .onTapGesture {
+                        numberFocused = true
                     }
             }
             
