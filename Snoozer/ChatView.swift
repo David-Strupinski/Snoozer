@@ -46,13 +46,17 @@ struct ChatView: View {
     }
 }
 
-class Chat: Identifiable {
+class Chat: UIViewController, Identifiable {
     var user: User
     var lastMessage = ""
     var time = ""
     
-    init(user: User) {
-        self.user = user
+//    init(user: User) {
+//        self.user = user
+//    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func getLastMessage() -> String {
@@ -60,11 +64,41 @@ class Chat: Identifiable {
         self.time = timeToString(time: Date())
         return self.lastMessage
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+    }
+    
+    private func setupViews() {
+        // Title
+        let messageLabel = UILabel()
+        messageLabel.text = "Messages"
+        messageLabel.textAlignment = .center
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(messageLabel)
+        
+        // Position the label
+        NSLayoutConstraint.activate([
+            messageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            messageLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
 }
 
-// Managing the chat rows
+// Managing the chat rows for ChatStoryboard
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // adjust measurements of profile circle
+        let largeSize = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
+        let image = UIImage(systemName: "person.crop.circle", withConfiguration: largeSize)
+        
+        // change label name to friend's name
+//        Friend.text = "David"
+        return 5
+    }
+    
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
@@ -76,7 +110,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.dataSource = self
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableRow(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
     
@@ -84,6 +118,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
         cell.textLabel?.text = messages[indexPath.row]
         return cell
+        
+    }
+    
+    func heightTable(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Return the  height for table cell at indexPath
+        return 500
     }
     
     @IBAction func sendMessage(_ sender: UIButton) {
@@ -94,27 +134,37 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func nextPage(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Get the selected message
         let selectedMessage = messages[indexPath.row]
-
+        
         // Perform the segue
-        performSegue(withIdentifier: "Show segue to View Controller", sender: selectedMessage)
+        performSegue(withIdentifier: "ShowChat", sender: selectedMessage)
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Show segue to View Controller" {
-//            if let ViewController = segue.destination as? TitleScene {
-//                // Pass any data you need to the chat view controller
-//                if let message = sender as? String {
-//                    ViewController.message = message
-//                }
-//            }
+        if segue.identifier == "ShowChat" {
+            if let AllChat = segue.destination as? PrivateChat {
+                if let message = sender as? String {
+                    //PrivateChat.message = message
+                }
+            }
+        }
+    }
+    
+    class PrivateChat: UIViewController {
+        
+        func showMessage() {
+            print("You're going to be late for class!")
+        }
+        
+        func sendMessage(message: String) -> Bool {
+            print("\(message)")
+            
+            return !message.isEmpty
         }
     }
 }
-
 //#Preview {
-//    ChatStoryboard()
+//    ChatView()
 //}
-
