@@ -89,8 +89,8 @@ struct AlarmView: View {
 }
 
 // Preview
-// struct AlarmView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AlarmView()
-//    }
-//}
+ struct AlarmView_Previews: PreviewProvider {
+    static var previews: some View {
+        AlarmView()
+    }
+}
