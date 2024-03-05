@@ -49,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		361F5E032B96A0C7001B1DBA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3626F47E2B8D54BC0059510B /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		365AF5952B8540C600EBBA7B /* VibrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationManager.swift; sourceTree = "<group>"; };
 		365E64422B8E64960001B29D /* softalarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = softalarm.mp3; sourceTree = "<group>"; };
@@ -140,6 +141,7 @@
 				6F69AF5D2B8545F000E32D9A /* AlarmEditDetail.swift */,
 				6F6AB27C2B7812F7003427C8 /* AlarmView.swift */,
 				6F69AF612B8547B800E32D9A /* ChatDetail.swift */,
+				361F5E032B96A0C7001B1DBA /* README.md */,
 				6F69AF5F2B8545FC00E32D9A /* AlarmAddDetail.swift */,
 				6F69AF632B91171400E32D9A /* AddProfileView.swift */,
 				6F6AB27E2B781329003427C8 /* ChatView.swift */,
