@@ -12,6 +12,8 @@
 		365E64432B8E64970001B29D /* softalarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 365E64422B8E64960001B29D /* softalarm.mp3 */; };
 		36AB0ED22B8AD9390069AB4D /* alarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 36AB0ED12B8AD9390069AB4D /* alarm.mp3 */; };
 		36D179972B914AF500955F51 /* GyroscopeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D179962B914AF500955F51 /* GyroscopeManager.swift */; };
+		6F20DF482B97B6C900E8533F /* PostgresNIO in Frameworks */ = {isa = PBXBuildFile; productRef = 6F20DF472B97B6C900E8533F /* PostgresNIO */; };
+		6F20DF4A2B97B6C900E8533F /* _ConnectionPoolModule in Frameworks */ = {isa = PBXBuildFile; productRef = 6F20DF492B97B6C900E8533F /* _ConnectionPoolModule */; };
 		6F69AF5C2B8295CD00E32D9A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69AF5B2B8295CD00E32D9A /* MainView.swift */; };
 		6F69AF5E2B8545F000E32D9A /* AlarmEditDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69AF5D2B8545F000E32D9A /* AlarmEditDetail.swift */; };
 		6F69AF602B8545FC00E32D9A /* AlarmAddDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69AF5F2B8545FC00E32D9A /* AlarmAddDetail.swift */; };
@@ -82,6 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F20DF4A2B97B6C900E8533F /* _ConnectionPoolModule in Frameworks */,
+				6F20DF482B97B6C900E8533F /* PostgresNIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +202,10 @@
 			dependencies = (
 			);
 			name = Snoozer;
+			packageProductDependencies = (
+				6F20DF472B97B6C900E8533F /* PostgresNIO */,
+				6F20DF492B97B6C900E8533F /* _ConnectionPoolModule */,
+			);
 			productName = Snoozer;
 			productReference = 6F6AB24B2B7571B1003427C8 /* Snoozer.app */;
 			productType = "com.apple.product-type.application";
@@ -270,6 +278,9 @@
 				Base,
 			);
 			mainGroup = 6F6AB2422B7571B1003427C8;
+			packageReferences = (
+				6F69AF672B97AF7E00E32D9A /* XCRemoteSwiftPackageReference "postgres-nio" */,
+			);
 			productRefGroup = 6F6AB24C2B7571B1003427C8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -654,6 +665,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6F69AF672B97AF7E00E32D9A /* XCRemoteSwiftPackageReference "postgres-nio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vapor/postgres-nio.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.20.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6F20DF472B97B6C900E8533F /* PostgresNIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6F69AF672B97AF7E00E32D9A /* XCRemoteSwiftPackageReference "postgres-nio" */;
+			productName = PostgresNIO;
+		};
+		6F20DF492B97B6C900E8533F /* _ConnectionPoolModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6F69AF672B97AF7E00E32D9A /* XCRemoteSwiftPackageReference "postgres-nio" */;
+			productName = _ConnectionPoolModule;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6F6AB2432B7571B1003427C8 /* Project object */;
 }

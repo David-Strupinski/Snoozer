@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PostgresNIO
 
 struct MainView: View {
     @State private var selection = 2
