@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3626F47F2B8D54BC0059510B /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3626F47E2B8D54BC0059510B /* HapticsManager.swift */; };
 		365AF5962B8540C600EBBA7B /* VibrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AF5952B8540C600EBBA7B /* VibrationManager.swift */; };
-		365AF59A2B85444600EBBA7B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365AF5992B85444600EBBA7B /* LoadingView.swift */; };
 		365E64432B8E64970001B29D /* softalarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 365E64422B8E64960001B29D /* softalarm.mp3 */; };
 		36AB0ED22B8AD9390069AB4D /* alarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 36AB0ED12B8AD9390069AB4D /* alarm.mp3 */; };
 		36D179972B914AF500955F51 /* GyroscopeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D179962B914AF500955F51 /* GyroscopeManager.swift */; };
@@ -52,7 +51,6 @@
 /* Begin PBXFileReference section */
 		3626F47E2B8D54BC0059510B /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		365AF5952B8540C600EBBA7B /* VibrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationManager.swift; sourceTree = "<group>"; };
-		365AF5992B85444600EBBA7B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		365E64422B8E64960001B29D /* softalarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = softalarm.mp3; sourceTree = "<group>"; };
 		36AB0ED12B8AD9390069AB4D /* alarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm.mp3; sourceTree = "<group>"; };
 		36D179962B914AF500955F51 /* GyroscopeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroscopeManager.swift; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 				6F69AF5F2B8545FC00E32D9A /* AlarmAddDetail.swift */,
 				6F69AF632B91171400E32D9A /* AddProfileView.swift */,
 				6F6AB27E2B781329003427C8 /* ChatView.swift */,
-				365AF5992B85444600EBBA7B /* LoadingView.swift */,
 				365AF5952B8540C600EBBA7B /* VibrationManager.swift */,
 				3626F47E2B8D54BC0059510B /* HapticsManager.swift */,
 				36D179962B914AF500955F51 /* GyroscopeManager.swift */,
@@ -330,7 +327,6 @@
 				3626F47F2B8D54BC0059510B /* HapticsManager.swift in Sources */,
 				6F6AB27D2B7812F7003427C8 /* AlarmView.swift in Sources */,
 				6F6AB24F2B7571B1003427C8 /* SnoozerApp.swift in Sources */,
-				365AF59A2B85444600EBBA7B /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
