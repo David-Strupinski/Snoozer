@@ -20,8 +20,19 @@ struct ChatView: View {
                     .font(.largeTitle)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 
-                // chat previews (repeat per person)
                 Divider()
+                
+                HStack {
+                    Spacer()
+                    
+                    NavigationLink(destination: AddChatView(chats: $chats, friends: $friends)) {
+                        Image(systemName: "square.and.pencil")
+                            .imageScale(.large)
+                    }
+                    .padding()
+                }
+                
+                // chat previews (repeat per person)
                 List(chats) { chat in
                     NavigationLink(destination: ChatDetail()) {
                         VStack {
@@ -46,18 +57,18 @@ struct ChatView: View {
     }
 }
 
-class Chat: UIViewController, Identifiable {
+class Chat: Identifiable {
     var user: User
     var lastMessage = ""
     var time = ""
     
-//    init(user: User) {
-//        self.user = user
-//    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    init(user: User) {
+        self.user = user
     }
+    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     func getLastMessage() -> String {
         self.lastMessage = "test"
@@ -65,25 +76,25 @@ class Chat: UIViewController, Identifiable {
         return self.lastMessage
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupViews()
-    }
-    
-    private func setupViews() {
-        // Title
-        let messageLabel = UILabel()
-        messageLabel.text = "Messages"
-        messageLabel.textAlignment = .center
-        messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(messageLabel)
-        
-        // Position the label
-        NSLayoutConstraint.activate([
-            messageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            messageLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-    }
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        setupViews()
+//    }
+//    
+//    private func setupViews() {
+//        // Title
+//        let messageLabel = UILabel()
+//        messageLabel.text = "Messages"
+//        messageLabel.textAlignment = .center
+//        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(messageLabel)
+//        
+//        // Position the label
+//        NSLayoutConstraint.activate([
+//            messageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            messageLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//        ])
+//    }
 }
 
 // Managing the chat rows for ChatStoryboard
