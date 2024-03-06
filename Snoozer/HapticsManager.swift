@@ -21,6 +21,8 @@ class HapticManager {
             generator.impactOccurred()
         }
 }
+
+    // To Test Vibrations on Device
     struct HapticsManager: View {
         var body: some View {
             VStack(spacing: 20) {

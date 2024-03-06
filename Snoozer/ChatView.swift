@@ -176,6 +176,3 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
 }
-//#Preview {
-//    ChatView()
-//}
