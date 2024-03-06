@@ -69,8 +69,8 @@ struct ContentView: View {
             checkAlarms() // Check alarms every minute
         }
         .sheet(isPresented: $showAlarmView) {
-            // Present AlarmView when an alarm is triggered
-            AlarmView()
+            // Present AlarmView when an alarm is triggered, pass the alarm time
+            AlarmView(alarmTime: Date())
         }
     }
     

@@ -5,78 +5,89 @@
 //  Created by David Strupinski on 2/10/24.
 //
 
-import Foundation
 import SwiftUI
 
 struct AlarmView: View {
     @State private var isAlarmOn = true
+    @State private var showTriviaView = false // State variable to control navigation to TriviaView
+    
+    let alarmTime: Date // Alarm time received from ContentView
     
     var body: some View {
-        VStack {
-            Text("7:00")
-                .font(.system(size: 100))
-            
-            Image(systemName: "alarm")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 200, height: 200)
-            
-            Button(action: {
-                // Stop the sound and haptic feedback when the button is tapped
-                SoundManager.instance.player?.stop()
-                print("Alarm Stopped")
-            }) {
-                Text("Stop Alarm")
-                    .font(.system(size: 40))
-                    .padding(.horizontal, 50)
-                    .padding(.vertical, 10)
-                    .background(Color.orange)
-                    .foregroundColor(.black)
-                    .clipShape(Capsule())
-            }
-            .padding(50)
-            
-            Button(action: {
-                print("You Snooze You Lose")
-            }) {
-                Text("Snoozer")
-                    .font(.system(size: 20))
-                    .padding(.horizontal, 25)
-                    .padding(.vertical, 10)
-                    .background(Color.orange)
-                    .foregroundColor(.black)
-                    .clipShape(Capsule())
-            }
-            .padding(.bottom, 10)
-        
-            HStack (spacing: 0) {
-                Spacer()
+        NavigationView { // Embedding AlarmView in NavigationView
+            VStack {
+                // Display the time received from ContentView
+                Text(timeToString(time: alarmTime))
+                    .font(.system(size: 60))
                 
-                Text("3")
-                Image(systemName: "flame.fill")
-                    .padding(.trailing, 10.0)
+                // Image representing the alarm
+                Image(systemName: "alarm")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 200)
                 
-                Text("ENDS STREAK")
+                NavigationLink(destination: TriviaView(), isActive: $showTriviaView) { // NavigationLink to TriviaView
+                    EmptyView() // Hidden NavigationLink
+                }
                 
-                Spacer()
+                Button(action: {
+                    // Stop the sound and haptic feedback when the button is tapped
+                    stopAlarm()
+                    print("Alarm Stopped")
+                    showTriviaView = true // Activate navigation to TriviaView
+                }) {
+                    Text("Stop Alarm")
+                        .font(.system(size: 40))
+                        .padding(.horizontal, 50)
+                        .padding(.vertical, 10)
+                        .background(Color.orange)
+                        .foregroundColor(.black)
+                        .clipShape(Capsule())
+                }
+                .padding(50)
+                
+                Button(action: {
+                    print("You Snooze You Lose")
+                }) {
+                    Text("Snoozer")
+                        .font(.system(size: 20))
+                        .padding(.horizontal, 25)
+                        .padding(.vertical, 10)
+                        .background(Color.orange)
+                        .foregroundColor(.black)
+                        .clipShape(Capsule())
+                }
+                .padding(.bottom, 10)
+            
+                HStack (spacing: 0) {
+                    Spacer()
+                    
+                    Text("3")
+                    Image(systemName: "flame.fill")
+                        .padding(.trailing, 10.0)
+                    
+                    Text("ENDS STREAK")
+                    
+                    Spacer()
+                }
+                .padding(.bottom, 50)
             }
-            .padding(.bottom, 50)
-        }
-        .onAppear {
-            // Play the alarm sound and trigger haptic feedback as soon as the view appears
-            SoundManager.instance.playSound(sound: .alarm)
-            // Trigger haptic feedback
-            HapticManager.instance.notification(type: .success)
-            GyroscopeManager.shared.startMonitoring()
-            GyroscopeManager.shared.isUpright = { upright in
-                if upright {
-                    // Stop the Alarm if the phone is upright
-                    self.stopAlarm()
+            .onAppear {
+                // Play the alarm sound and trigger haptic feedback as soon as the view appears
+                SoundManager.instance.playSound(sound: .alarm)
+                // Trigger haptic feedback
+                HapticManager.instance.notification(type: .success)
+                GyroscopeManager.shared.startMonitoring()
+                GyroscopeManager.shared.isUpright = { upright in
+                    if upright {
+                        // Stop the Alarm if the phone is upright
+                        self.stopAlarm()
+                    }
                 }
             }
-        }
-        .onDisappear {
-            GyroscopeManager.shared.stopMonitoring() // Stop monitoring when the view disappears
+            .onDisappear {
+                GyroscopeManager.shared.stopMonitoring() // Stop monitoring when the view disappears
+            }
         }
     }
     
@@ -89,8 +100,8 @@ struct AlarmView: View {
 }
 
 // Preview
- struct AlarmView_Previews: PreviewProvider {
+struct AlarmView_Previews: PreviewProvider {
     static var previews: some View {
-        AlarmView()
+        AlarmView(alarmTime: Date())
     }
 }

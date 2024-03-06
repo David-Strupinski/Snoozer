@@ -35,6 +35,16 @@ struct TriviaView: View {
                 nextQuestion()
             })
         }
+        .onAppear {
+            // Play the alarm sound and trigger haptic feedback as soon as the view appears
+            SoundManager.instance.playSound(sound: .alarm)
+            // Trigger haptic feedback
+            HapticManager.instance.notification(type: .success)
+            GyroscopeManager.shared.startMonitoring()
+        }
+        .onDisappear {
+            GyroscopeManager.shared.stopMonitoring() // Stop monitoring when the view disappears
+        }
     }
     
     // Function to handle user tap on an answer
