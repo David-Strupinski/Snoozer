@@ -19,10 +19,6 @@ struct AlarmAddDetail: View {
                     DatePicker("Choose an Alarm Time", selection: $time, displayedComponents: .hourAndMinute)
                 }
                 
-                Section {
-                    // TODO: for days of week
-                }
-                
                 Button("Submit") {
                     alarms[time] = true
                     self.presentationMode.wrappedValue.dismiss()

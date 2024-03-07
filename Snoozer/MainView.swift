@@ -29,6 +29,7 @@ struct MainView: View {
                     }
                     .tag(1)
                 
+                // Alarm list view
                 ContentView()
                     .tabItem {
                         Label("Alarms", systemImage: "alarm")
@@ -42,6 +43,7 @@ struct MainView: View {
                     .tag(3)
             }
         } else {
+            // force users to make profile
             AddProfileView(name: $name, phone: $phone, loggedIn: $loggedIn)
         }
     }

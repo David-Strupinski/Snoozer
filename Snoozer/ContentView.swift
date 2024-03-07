@@ -22,7 +22,6 @@ struct ContentView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                 
-                // Repeat per alarm added
                 Divider()
                 
                 if alarms.isEmpty {
@@ -30,6 +29,7 @@ struct ContentView: View {
                     Text("No alarms. Add below")
                         .foregroundStyle(.gray)
                 } else {
+                    // Repeat per alarm added
                     List(alarms.sorted(by: { $0.key < $1.key }), id: \.key) { time, isActive in
                         NavigationLink(destination: AlarmEditDetail(alarms: $alarms, timeIndex: time)) {
                             HStack {

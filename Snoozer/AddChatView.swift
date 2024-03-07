@@ -13,6 +13,7 @@ struct AddChatView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
+        // list of friends to add chats
         List(friends) { friend in
             Button(friend.name) {
                 chats.append(Chat(user: friend))

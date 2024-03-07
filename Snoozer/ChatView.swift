@@ -22,6 +22,7 @@ struct ChatView: View {
                 
                 Divider()
                 
+                // add new chats button
                 HStack {
                     Spacer()
                     
