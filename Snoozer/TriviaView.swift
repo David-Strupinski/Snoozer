@@ -1,6 +1,5 @@
 import SwiftUI
 
-// TriviaView: A view for displaying trivia questions and answers
 struct TriviaView: View {
     // State variables to track current question index and alert presentation
     @State private var currentQuestionIndex = 0

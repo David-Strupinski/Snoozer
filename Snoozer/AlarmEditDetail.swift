@@ -22,11 +22,6 @@ struct AlarmEditDetail: View {
                 .onAppear {
                     time = timeIndex
                 }
-                
-                Section {
-                    // TODO: for days of week
-                }
-                
                 Button("Submit") {
                     if time != timeIndex {
                         let activeAlarm = alarms[timeIndex]
