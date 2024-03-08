@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PostgresNIO
 
 struct AddProfileView: View {
     @Binding var name: String
@@ -14,6 +15,7 @@ struct AddProfileView: View {
     @Environment(\.presentationMode) var presentationMode
     @FocusState private var nameFocused: Bool
     @FocusState private var numberFocused: Bool
+    @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
     
     var body: some View {
         Text("Create Your Profile")
@@ -46,13 +48,24 @@ struct AddProfileView: View {
             
             Button("Submit") {
                 if !name.isEmpty {
+                    addProfile(connectionManager: connectionManager, name: name, phone: phone)
+                    
                     loggedIn = true
-                    MainView()
+                    _ = MainView()
                 }
             }
         }
         .scrollContentBackground(.hidden)
         
         Spacer()
+    }
+}
+
+func addProfile(connectionManager: PostgreSQLConnectionManager, name: String, phone: String) {
+    let addProfileSQL = "INSERT INTO users VALUES ('\(name)', '\(phone)');"
+    do {
+        _ = try connectionManager.connection?.query(addProfileSQL).wait()
+    } catch {
+        print("Failed to add profile: \(error.localizedDescription)")
     }
 }

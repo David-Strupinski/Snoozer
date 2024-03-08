@@ -7,6 +7,8 @@
 
 import SwiftUI
 import PostgresNIO
+import Logging
+import Combine
 
 struct MainView: View {
     @State private var selection = 2
@@ -19,6 +21,7 @@ struct MainView: View {
         User(name: "Nathan"),
         User(name: "Aaleah")
     ]
+    @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
     
     var body: some View {
         if loggedIn {
@@ -45,6 +48,7 @@ struct MainView: View {
         } else {
             // force users to make profile
             AddProfileView(name: $name, phone: $phone, loggedIn: $loggedIn)
+                .environmentObject(connectionManager)
         }
     }
 }
