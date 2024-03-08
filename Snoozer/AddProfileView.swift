@@ -9,8 +9,7 @@ import SwiftUI
 import PostgresNIO
 
 struct AddProfileView: View {
-    @Binding var name: String
-    @Binding var phone: String
+    @Binding var user: User
     @Binding var loggedIn: Bool
     @Environment(\.presentationMode) var presentationMode
     @FocusState private var nameFocused: Bool
@@ -26,7 +25,7 @@ struct AddProfileView: View {
         
         Form {
             Section("Name") {
-                TextField("Enter your name", text: $name)
+                TextField("Enter your name", text: $user.name)
                     .focused($nameFocused)
                     .onTapGesture {
                         nameFocused = true
@@ -34,10 +33,10 @@ struct AddProfileView: View {
             }
             
             Section("Phone") {
-                TextField("Enter your phone number", text: $phone)
-                    .onChange(of: phone) {
-                        if !phone.isEmpty {
-                            phone = phone.formatPhoneNumber()
+                TextField("Enter your phone number", text: $user.phone)
+                    .onChange(of: user.phone) {
+                        if !user.phone.isEmpty {
+                            user.phone = user.phone.formatPhoneNumber()
                         }
                     }
                     .focused($numberFocused)
@@ -47,8 +46,8 @@ struct AddProfileView: View {
             }
             
             Button("Submit") {
-                if !name.isEmpty {
-                    addProfile(connectionManager: connectionManager, name: name, phone: phone)
+                if (!user.name.isEmpty && !user.phone.isEmpty) {
+                    addProfile(user: user)
                     
                     loggedIn = true
                     _ = MainView()
@@ -59,13 +58,13 @@ struct AddProfileView: View {
         
         Spacer()
     }
-}
-
-func addProfile(connectionManager: PostgreSQLConnectionManager, name: String, phone: String) {
-    let addProfileSQL = "INSERT INTO users VALUES ('\(name)', '\(phone)');"
-    do {
-        _ = try connectionManager.connection?.query(addProfileSQL).wait()
-    } catch {
-        print("Failed to add profile: \(error.localizedDescription)")
+    
+    func addProfile(user: User) {
+        let addProfileSQL = "INSERT INTO users VALUES ('\(user.name)', '\(user.phone)', 0, 0);"
+        do {
+            _ = try connectionManager.connection?.query(addProfileSQL).wait()
+        } catch {
+            print("Failed to add profile: \(error.localizedDescription)")
+        }
     }
 }

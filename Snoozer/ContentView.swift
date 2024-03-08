@@ -12,6 +12,8 @@ import CoreHaptics
 struct ContentView: View {
     @State private var alarms: [Date: Bool] = [:]
     @State private var showAlarmView = false // State to control the presentation of AlarmView
+    @Binding var user: User
+    @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
 
     let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect() // Timer to check every minute
 
@@ -70,7 +72,8 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showAlarmView) {
             // Present AlarmView when an alarm is triggered, pass the alarm time
-            AlarmView(alarmTime: Date())
+            AlarmView(user: $user, alarmTime: Date())
+                .environmentObject(connectionManager)
         }
     }
     
@@ -96,8 +99,4 @@ func timeToString(time: Date) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "hh:mm a"
     return dateFormatter.string(from: time)
-}
-
-#Preview {
-    ContentView()
 }

@@ -10,6 +10,8 @@ import SwiftUI
 struct AlarmView: View {
     @State private var isAlarmOn = true
     @State private var showTriviaView = false // State variable to control navigation to TriviaView
+    @Binding var user: User
+    @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
     
     let alarmTime: Date // Alarm time received from ContentView
     
@@ -34,6 +36,7 @@ struct AlarmView: View {
                     // Stop the sound and haptic feedback when the button is tapped
                     stopAlarm()
                     print("Alarm Stopped")
+                    incrementStreak()
                     showTriviaView = true // Activate navigation to TriviaView
                 }) {
                     Text("Stop Alarm")
@@ -48,6 +51,7 @@ struct AlarmView: View {
                 
                 Button(action: {
                     print("You Snooze You Lose")
+                    resetStreak()
                 }) {
                     Text("Snoozer")
                         .font(.system(size: 20))
@@ -97,11 +101,27 @@ struct AlarmView: View {
         GyroscopeManager.shared.stopMonitoring() // Stops gyroscope mechanism
     }
 
-}
-
-// Preview
-struct AlarmView_Previews: PreviewProvider {
-    static var previews: some View {
-        AlarmView(alarmTime: Date())
+    func resetStreak() {
+        let phone = self.user.phone
+        let resetStreakSQL = "UPDATE users SET currStreak = 0 WHERE phone = '\(phone)';"
+        do {
+            _ = try connectionManager.connection?.query(resetStreakSQL).wait()
+        } catch {
+            print("Failed to reset user streak: \(error.localizedDescription)")
+        }
+    }
+    
+    func incrementStreak() {
+        self.user.currStreak += 1
+        if self.user.currStreak > self.user.longestStreak {
+            self.user.longestStreak = self.user.currStreak
+        }
+        let incrementStreakSQL = "UPDATE users SET currStreak = \(self.user.currStreak), longestStreak = \(self.user.longestStreak) WHERE phone = '\(self.user.phone)';"
+        
+        do {
+            _ = try connectionManager.connection?.query(incrementStreakSQL).wait()
+        } catch {
+            print("Failed to increment user streak")
+        }
     }
 }

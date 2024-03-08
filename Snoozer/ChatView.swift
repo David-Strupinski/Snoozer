@@ -12,6 +12,7 @@ import UIKit
 struct ChatView: View {
     @Binding var friends: [User]
     @State private var chats: [Chat] = []
+    @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
 
     var body: some View {
         NavigationView {

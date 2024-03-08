@@ -9,11 +9,8 @@ import Foundation
 import SwiftUI
 
 struct ProfileView: View {
-    @Binding var name: String
-    @Binding var phone: String
+    @Binding var user: User
     @Binding var friends: [User]
-    @State private var currStreak = 0
-    @State private var longestStreak = 0
     
     var body: some View {
         VStack {
@@ -30,13 +27,13 @@ struct ProfileView: View {
                 .frame(width: 200, height: 200)
                 .foregroundColor(.gray)
             
-            Text(name)
+            Text(user.name)
             
-            Text(phone)
+            Text(user.phone)
             
-            Text("Current Streak: " + currStreak.formatted())
+            Text("Current Streak: \(user.currStreak)")
             
-            Text("Longest Streak: " + longestStreak.formatted())
+            Text("Longest Streak: \(user.longestStreak)")
             
             Spacer()
             
@@ -59,9 +56,9 @@ struct ProfileView: View {
                     HStack {
                         Text(friend.name)
                             .frame(width: 125, alignment: .leading)
-                        Text(friend.currStreakString)
+                        Text("\(friend.currStreak)")
                             .frame(width: 100, alignment: .center)
-                        Text(friend.longestStreakString)
+                        Text("\(friend.longestStreak)")
                             .frame(width: 100, alignment: .trailing)
                     }
                 }

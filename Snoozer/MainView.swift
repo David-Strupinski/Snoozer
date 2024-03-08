@@ -13,41 +13,43 @@ import Combine
 struct MainView: View {
     @State private var selection = 2
     @State private var loggedIn = false
-    @State private var name = ""
-    @State private var phone = ""
+    @State private var user = User(name: "", phone: "")
+    // TODO: add way to add friends by phone
     @State var friends: [User] = [
         User(name: "David", phone: "(253) 722-6439"),
-        User(name: "Amy", currStreak: 3),
-        User(name: "Nathan"),
-        User(name: "Aaleah")
+        User(name: "Amy", phone: "", currStreak: 3),
+        User(name: "Nathan", phone: ""),
+        User(name: "Aaleah", phone: "")
     ]
     @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
     
     var body: some View {
         if loggedIn {
             TabView(selection: $selection) {
-                ProfileView(name: $name, phone: $phone, friends: $friends)
+                ProfileView(user: $user, friends: $friends)
                     .tabItem {
                         Label("Profile", systemImage: "person.crop.circle")
                     }
                     .tag(1)
                 
                 // Alarm list view
-                ContentView()
+                ContentView(user: $user)
                     .tabItem {
                         Label("Alarms", systemImage: "alarm")
                     }
                     .tag(2)
+                    .environmentObject(connectionManager)
                 
                 ChatView(friends: $friends)
                     .tabItem {
                         Label("Chat", systemImage: "ellipsis.message")
                     }
                     .tag(3)
+                    .environmentObject(connectionManager)
             }
         } else {
             // force users to make profile
-            AddProfileView(name: $name, phone: $phone, loggedIn: $loggedIn)
+            AddProfileView(user: $user, loggedIn: $loggedIn)
                 .environmentObject(connectionManager)
         }
     }
@@ -56,18 +58,9 @@ struct MainView: View {
 struct User: Identifiable {
     var id = UUID()
     var name: String
-    var phone: String?
+    var phone: String
     var currStreak = 0
     var longestStreak = 0
-}
-
-extension User {
-    var currStreakString: String {
-        String(currStreak)
-    }
-    var longestStreakString: String {
-        String(longestStreak)
-    }
 }
 
 extension String {
