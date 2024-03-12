@@ -31,6 +31,7 @@ struct MainView: View {
                         Label("Profile", systemImage: "person.crop.circle")
                     }
                     .tag(1)
+                    .environmentObject(connectionManager)
                 
                 // Alarm list view
                 ContentView(user: $user)
@@ -84,8 +85,4 @@ extension String {
         
         return result
     }
-}
-
-#Preview {
-    MainView()
 }
