@@ -11,17 +11,21 @@ import StreamChatSwiftUI
 
 struct CustomChannelList: View {
     @State var channelInfoShown = false
-        @State var messageDisplayInfo: MessageDisplayInfo?
-        @StateObject var viewModel: ChatChannelViewModel
+    @State var messageDisplayInfo: MessageDisplayInfo?
+    @StateObject var viewModel: ChatChannelViewModel
         
-        init(channelId: ChannelId) {
+    init(channelId: ChannelId) {
             _viewModel = StateObject(wrappedValue: ChatChannelViewModel(
                 channelController: InjectedValues[\.chatClient].channelController(
                     for: channelId
                 ))
             )
+       // let channelId = ChannelId(type: "messaging", id: "general")
         }
-        
+    //@StateObject var channel = CustomChannelList()
+    
+    //let customChannelList = CustomChannelList(channelId: ChannelId)
+    
         var body: some View {
             NavigationView {
                 if let channel = viewModel.channel {
@@ -124,5 +128,5 @@ struct CustomChannelList: View {
 }
 */
 //#Preview {
-//    CustomChannelList()
+//    CustomChannelList(channelId: ChatUIView())
 //}

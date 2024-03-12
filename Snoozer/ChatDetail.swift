@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChatDetail: View {
     var body: some View {
-        Text("Wake up right now! You're late for class!")
+        Text("Hey, this is your accountability buddy. It's time to wake up!")
     }
 }
 

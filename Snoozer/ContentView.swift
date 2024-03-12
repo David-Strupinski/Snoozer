@@ -14,11 +14,17 @@ struct ContentView: View {
     @State private var showAlarmView = false // State to control the presentation of AlarmView
     @Binding var user: User
     @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
+    
+    
+    
+            
+    
 
     let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect() // Timer to check every minute
 
     var body: some View {
         NavigationView {
+            
             VStack {
                 Text("Alarms")
                     .font(.largeTitle)

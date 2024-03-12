@@ -70,7 +70,7 @@ class Chat: Identifiable {
     
     
     func getLastMessage() -> String {
-        self.lastMessage = "test"
+        self.lastMessage = "Hey, this is your accountability buddy. It's time to wake up!"
         self.time = timeToString(time: Date())
         return self.lastMessage
     }
@@ -152,5 +152,5 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return !message.isEmpty
         }
     }
-    */
+   */
 

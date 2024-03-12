@@ -9,6 +9,8 @@ import SwiftUI
 import PostgresNIO
 import Logging
 import Combine
+import StreamChat
+import StreamChatSwiftUI
 
 struct MainView: View {
     @State private var selection = 2
@@ -22,6 +24,8 @@ struct MainView: View {
         User(name: "Aaleah", phone: "")
     ]
     @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
+    
+    //@StateObject private var channelListViewModel = ChatChannelListViewModel() // Initialize your view model
     
     var body: some View {
         if loggedIn {
@@ -41,12 +45,37 @@ struct MainView: View {
                     .tag(2)
                     .environmentObject(connectionManager)
                 
-//                ChatView(friends: $friends)
+//                VStack {
+//                    CustomChannelList(channelListController: channelListViewModel.channelListController)
+//                        .navigationTitle("Channel List")
+//
+//                    CustomChannelList(channelId: "chatChannel")
+//                        .navigationTitle("Channel")
+//                }
+            
+                // ChatUIView tab
+//                ChatUIView()
 //                    .tabItem {
-//                        Label("Chat", systemImage: "ellipsis.message")
+//                    Label("Chat", systemImage: "ellipsis.message")
 //                    }
 //                    .tag(3)
 //                    .environmentObject(connectionManager)
+                                
+                // CustomChannelList tab
+//                let channelId = ChannelId(type: "messaging", id: "general")
+//                CustomChannelList(channelId: channelId)
+//                    .tabItem {
+//                    Label("Custom Channel List", systemImage: "list.bullet")
+//                    }
+//                    .tag(3)
+//                    .environmentObject(connectionManager)
+                
+                ChatView(friends: $friends)
+                    .tabItem {
+                        Label("Chat", systemImage: "ellipsis.message")
+                    }
+                    .tag(3)
+                    .environmentObject(connectionManager)
             }
         } else {
             // force users to make profile
