@@ -19,6 +19,14 @@ struct ChatUIView: App {
             let client = ChatClient(config: config)
             return client
         }()
+    
+//    var colors = ColorPalette()
+//    let streamBlue = UIColor(red: 0, green: 108.0 / 255.0, blue: 255.0 / 255.0, alpha: 1)
+//    colors.messageCurrentUserBackground = [streamBlue]
+//    colors.messageCurrentUserTextColor = .white
+    
+    let images = Images()
+    //images.reactionLoveBig = UIImage(systemName: "")!
         
         @State var streamChat: StreamChat?
         
@@ -30,7 +38,7 @@ struct ChatUIView: App {
         var body: some Scene {
             WindowGroup {
 //                ChatChannelListView()
-                CustomChannelList()
+               //CustomChannelList(channelId: ChannelId)
             }
         }
         

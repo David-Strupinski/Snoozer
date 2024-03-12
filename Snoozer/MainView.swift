@@ -41,12 +41,12 @@ struct MainView: View {
                     .tag(2)
                     .environmentObject(connectionManager)
                 
-                ChatView(friends: $friends)
-                    .tabItem {
-                        Label("Chat", systemImage: "ellipsis.message")
-                    }
-                    .tag(3)
-                    .environmentObject(connectionManager)
+//                ChatView(friends: $friends)
+//                    .tabItem {
+//                        Label("Chat", systemImage: "ellipsis.message")
+//                    }
+//                    .tag(3)
+//                    .environmentObject(connectionManager)
             }
         } else {
             // force users to make profile
