@@ -68,9 +68,6 @@ class Chat: Identifiable {
         self.user = user
     }
     
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
     
     func getLastMessage() -> String {
         self.lastMessage = "test"
@@ -78,37 +75,16 @@ class Chat: Identifiable {
         return self.lastMessage
     }
     
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        setupViews()
-//    }
-//    
-//    private func setupViews() {
-//        // Title
-//        let messageLabel = UILabel()
-//        messageLabel.text = "Messages"
-//        messageLabel.textAlignment = .center
-//        messageLabel.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(messageLabel)
-//        
-//        // Position the label
-//        NSLayoutConstraint.activate([
-//            messageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            messageLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//        ])
-//    }
 }
 
-// Managing the chat rows for ChatStoryboard
+/* Managing the chat rows for ChatStoryboard
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // adjust measurements of profile circle
         let largeSize = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
         let image = UIImage(systemName: "person.crop.circle", withConfiguration: largeSize)
-        
-        // change label name to friend's name
-//        Friend.text = "David"
+
         return 5
     }
     
@@ -159,7 +135,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if segue.identifier == "ShowChat" {
             if let AllChat = segue.destination as? PrivateChat {
                 if let message = sender as? String {
-                    //PrivateChat.message = message
                 }
             }
         }
@@ -177,4 +152,5 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return !message.isEmpty
         }
     }
-}
+    */
+
