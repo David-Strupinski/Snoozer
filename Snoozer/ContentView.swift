@@ -13,13 +13,8 @@ struct ContentView: View {
     @State private var alarms: [Date: Bool] = [:]
     @State private var showAlarmView = false // State to control the presentation of AlarmView
     @Binding var user: User
-    @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
     
-    
-    
-            
-    
-
+    // TODO: fix, checking like this makes it not alarm at exact time
     let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect() // Timer to check every minute
 
     var body: some View {
@@ -79,7 +74,6 @@ struct ContentView: View {
         .sheet(isPresented: $showAlarmView) {
             // Present AlarmView when an alarm is triggered, pass the alarm time
             AlarmView(user: $user, alarmTime: Date())
-                .environmentObject(connectionManager)
         }
     }
     

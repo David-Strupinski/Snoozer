@@ -12,20 +12,53 @@ import Combine
 import StreamChat
 import StreamChatSwiftUI
 
+@Observable class User: Identifiable {
+    var id = UUID()
+    var name: String
+    var phone: String
+    
+    private var _longestStreak = 0
+    var currStreak = 0 {
+        didSet {
+            _longestStreak = max(_longestStreak, currStreak)
+            updateStreak()
+        }
+    }
+    var longestStreak: Int {
+        _longestStreak
+    }
+    
+    init(name: String, phone: String, currStreak: Int = 0, longestStreak: Int = 0) {
+        self.name = name
+        self.phone = phone
+        self.currStreak = currStreak
+        self._longestStreak = longestStreak
+    }
+    
+    private func updateStreak() {
+        // this is SAFE in postgres-nio
+        let updateStreakSQL = """
+            UPDATE users SET currStreak = \(self.currStreak), longestStreak = \(self.longestStreak) WHERE phone = '\(self.phone)';
+        """
+        
+        do {
+            _ = try connectionManager.connection?.query(updateStreakSQL).wait()
+        } catch {
+            print("Failed to increment user streak")
+        }
+    }
+}
+
 struct MainView: View {
     @State private var selection = 2
     @State private var loggedIn = false
     @State private var user = User(name: "", phone: "")
-    // TODO: add way to add friends by phone
-    @State var friends: [User] = [
+    @State var friends: [User] = [  // TODO: eventually remove test friends
         User(name: "David", phone: "(253) 722-6439"),
         User(name: "Amy", phone: "", currStreak: 3),
         User(name: "Nathan", phone: ""),
         User(name: "Aaleah", phone: "")
     ]
-    @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
-    
-    //@StateObject private var channelListViewModel = ChatChannelListViewModel() // Initialize your view model
     
     var body: some View {
         if loggedIn {
@@ -35,7 +68,6 @@ struct MainView: View {
                         Label("Profile", systemImage: "person.crop.circle")
                     }
                     .tag(1)
-                    .environmentObject(connectionManager)
                 
                 // Alarm list view
                 ContentView(user: $user)
@@ -43,54 +75,18 @@ struct MainView: View {
                         Label("Alarms", systemImage: "alarm")
                     }
                     .tag(2)
-                    .environmentObject(connectionManager)
-                
-//                VStack {
-//                    CustomChannelList(channelListController: channelListViewModel.channelListController)
-//                        .navigationTitle("Channel List")
-//
-//                    CustomChannelList(channelId: "chatChannel")
-//                        .navigationTitle("Channel")
-//                }
-            
-                // ChatUIView tab
-//                ChatUIView()
-//                    .tabItem {
-//                    Label("Chat", systemImage: "ellipsis.message")
-//                    }
-//                    .tag(3)
-//                    .environmentObject(connectionManager)
-                                
-                // CustomChannelList tab
-//                let channelId = ChannelId(type: "messaging", id: "general")
-//                CustomChannelList(channelId: channelId)
-//                    .tabItem {
-//                    Label("Custom Channel List", systemImage: "list.bullet")
-//                    }
-//                    .tag(3)
-//                    .environmentObject(connectionManager)
                 
                 ChatView(friends: $friends)
                     .tabItem {
                         Label("Chat", systemImage: "ellipsis.message")
                     }
                     .tag(3)
-                    .environmentObject(connectionManager)
             }
         } else {
             // force users to make profile
             AddProfileView(user: $user, loggedIn: $loggedIn)
-                .environmentObject(connectionManager)
         }
     }
-}
-
-struct User: Identifiable {
-    var id = UUID()
-    var name: String
-    var phone: String
-    var currStreak = 0
-    var longestStreak = 0
 }
 
 extension String {

@@ -12,7 +12,6 @@ import UIKit
 struct ChatView: View {
     @Binding var friends: [User]
     @State private var chats: [Chat] = []
-    @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
 
     var body: some View {
         NavigationView {
@@ -76,81 +75,3 @@ class Chat: Identifiable {
     }
     
 }
-
-/* Managing the chat rows for ChatStoryboard
-
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // adjust measurements of profile circle
-        let largeSize = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
-        let image = UIImage(systemName: "person.crop.circle", withConfiguration: largeSize)
-
-        return 5
-    }
-    
-    
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var messageTextField: UITextField!
-    
-    var messages: [String] = []
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.dataSource = self
-    }
-    
-    func tableRow(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
-        cell.textLabel?.text = messages[indexPath.row]
-        return cell
-        
-    }
-    
-    func heightTable(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // Return the  height for table cell at indexPath
-        return 500
-    }
-    
-    @IBAction func sendMessage(_ sender: UIButton) {
-        if let message = messageTextField.text, !message.isEmpty {
-            messages.append(message)
-            tableView.reloadData()
-            messageTextField.text = ""
-        }
-    }
-    
-    func nextPage(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Get the selected message
-        let selectedMessage = messages[indexPath.row]
-        
-        // Perform the segue
-        performSegue(withIdentifier: "ShowChat", sender: selectedMessage)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowChat" {
-            if let AllChat = segue.destination as? PrivateChat {
-                if let message = sender as? String {
-                }
-            }
-        }
-    }
-    
-    class PrivateChat: UIViewController {
-        
-        func showMessage() {
-            print("You're going to be late for class!")
-        }
-        
-        func sendMessage(message: String) -> Bool {
-            print("\(message)")
-            
-            return !message.isEmpty
-        }
-    }
-   */
-

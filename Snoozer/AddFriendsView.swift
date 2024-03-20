@@ -12,8 +12,9 @@ struct AddFriendsView: View {
     @State private var phone: String = ""
     @FocusState private var numberFocused: Bool
     @Binding var friends: [User]
+    // TODO: try dismiss instead of presentationMode
+    //    @Environment(\.dismiss) private var dismiss
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
     
     var body: some View {
         Text("Add Friend")

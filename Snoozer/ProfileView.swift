@@ -11,7 +11,6 @@ import SwiftUI
 struct ProfileView: View {
     @Binding var user: User
     @Binding var friends: [User]
-    @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
     
     var body: some View {
         NavigationView {

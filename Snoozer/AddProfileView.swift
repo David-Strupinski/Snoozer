@@ -14,7 +14,8 @@ struct AddProfileView: View {
     @Environment(\.presentationMode) var presentationMode
     @FocusState private var nameFocused: Bool
     @FocusState private var numberFocused: Bool
-    @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
+    
+    let phoneLength = 14
     
     var body: some View {
         Text("Create Your Profile")
@@ -46,7 +47,7 @@ struct AddProfileView: View {
             }
             
             Button("Submit") {
-                if (!user.name.isEmpty && !user.phone.isEmpty) {
+                if (!user.name.isEmpty && !user.phone.isEmpty && user.phone.count == phoneLength) {
                     addProfile(user: user)
                     
                     loggedIn = true

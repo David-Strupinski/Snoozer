@@ -12,17 +12,14 @@ import Logging
 
 @main
 struct SnoozerApp: App {
-    static var connectionManager = PostgreSQLConnectionManager()
-    
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environmentObject(Self.connectionManager)
         }
     }
 }
 
-class PostgreSQLConnectionManager: ObservableObject {
+public class PostgreSQLConnectionManager: ObservableObject {
     @Published var connection: PostgresConnection?
     private let logger = Logger(label: "postgres")
     private var cancellables = Set<AnyCancellable>()
@@ -80,3 +77,5 @@ class PostgreSQLConnectionManager: ObservableObject {
         }
     }
 }
+
+public var connectionManager = PostgreSQLConnectionManager()

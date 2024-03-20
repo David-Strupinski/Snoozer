@@ -11,7 +11,6 @@ struct AlarmView: View {
     @State private var isAlarmOn = true
     @State private var showTriviaView = false // State variable to control navigation to TriviaView
     @Binding var user: User
-    @EnvironmentObject var connectionManager: PostgreSQLConnectionManager
     
     let alarmTime: Date // Alarm time received from ContentView
     
@@ -36,7 +35,7 @@ struct AlarmView: View {
                     // Stop the sound and haptic feedback when the button is tapped
                     stopAlarm()
                     print("Alarm Stopped")
-                    incrementStreak()
+                    self.user.currStreak += 1
                     showTriviaView = true // Activate navigation to TriviaView
                 }) {
                     Text("Stop Alarm")
@@ -51,7 +50,7 @@ struct AlarmView: View {
                 
                 Button(action: {
                     print("You Snooze You Lose")
-                    resetStreak()
+                    self.user.currStreak = 0
                 }) {
                     Text("Snoozer")
                         .font(.system(size: 20))
@@ -62,7 +61,7 @@ struct AlarmView: View {
                         .clipShape(Capsule())
                 }
                 .padding(.bottom, 10)
-            
+                
                 HStack (spacing: 0) {
                     Spacer()
                     
@@ -99,29 +98,5 @@ struct AlarmView: View {
         isAlarmOn = false
         SoundManager.instance.player?.stop() // Stops the alarm sound
         GyroscopeManager.shared.stopMonitoring() // Stops gyroscope mechanism
-    }
-
-    func resetStreak() {
-        let phone = self.user.phone
-        let resetStreakSQL = "UPDATE users SET currStreak = 0 WHERE phone = '\(phone)';"
-        do {
-            _ = try connectionManager.connection?.query(resetStreakSQL).wait()
-        } catch {
-            print("Failed to reset user streak: \(error.localizedDescription)")
-        }
-    }
-    
-    func incrementStreak() {
-        self.user.currStreak += 1
-        if self.user.currStreak > self.user.longestStreak {
-            self.user.longestStreak = self.user.currStreak
-        }
-        let incrementStreakSQL = "UPDATE users SET currStreak = \(self.user.currStreak), longestStreak = \(self.user.longestStreak) WHERE phone = '\(self.user.phone)';"
-        
-        do {
-            _ = try connectionManager.connection?.query(incrementStreakSQL).wait()
-        } catch {
-            print("Failed to increment user streak")
-        }
     }
 }

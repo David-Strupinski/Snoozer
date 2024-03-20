@@ -1,4 +1,5 @@
 {
+  "originHash" : "fce1ca6bf1fc2eaa8036b5baa1f0bc030a655065c604c8d842d268529b1e6c56",
   "pins" : [
     {
       "identity" : "postgres-nio",
@@ -7,6 +8,24 @@
       "state" : {
         "revision" : "69ccfdf4c80144d845e3b439961b7ec6cd7ae33f",
         "version" : "1.20.2"
+      }
+    },
+    {
+      "identity" : "stream-chat-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/GetStream/stream-chat-swift.git",
+      "state" : {
+        "revision" : "234c9598202c6a0561150d50e0a87d3fdadc7856",
+        "version" : "4.50.0"
+      }
+    },
+    {
+      "identity" : "stream-chat-swiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/getstream/stream-chat-swiftui",
+      "state" : {
+        "revision" : "190fb1dd3eb10a2052afcfe4aa34f72374e8b9f8",
+        "version" : "4.50.0"
       }
     },
     {
@@ -91,5 +110,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
