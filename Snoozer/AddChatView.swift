@@ -10,14 +10,14 @@ import SwiftUI
 struct AddChatView: View {
     @Binding var chats: [Chat]
     @Binding var friends: [User]
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         // list of friends to add chats
         List(friends) { friend in
             Button(friend.name) {
                 chats.append(Chat(user: friend))
-                self.presentationMode.wrappedValue.dismiss()
+                dismiss()
             }
         }
     }

@@ -11,7 +11,7 @@ struct AlarmEditDetail: View {
     @Binding var alarms: [Date: Bool]
     var timeIndex: Date
     @State private var time = Date()
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationView {
@@ -28,12 +28,12 @@ struct AlarmEditDetail: View {
                         alarms.removeValue(forKey: timeIndex)
                         alarms[time] = activeAlarm
                     }
-                    self.presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 }
                 
                 Button("Delete") {
                     alarms.removeValue(forKey: timeIndex)
-                    self.presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 }
                 .foregroundStyle(.red)
             }

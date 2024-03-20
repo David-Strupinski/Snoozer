@@ -5,6 +5,7 @@ struct TriviaView: View {
     @State private var currentQuestionIndex = 0
     @State private var showingAlert = false
     @State private var alertTitle = ""
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack(spacing: 20) {
@@ -43,6 +44,7 @@ struct TriviaView: View {
         }
         .onDisappear {
             GyroscopeManager.shared.stopMonitoring() // Stop monitoring when the view disappears
+            dismiss()
         }
     }
     
@@ -63,6 +65,7 @@ struct TriviaView: View {
         } else {
             // No more questions, consider what should happen next
             // Maybe stop the alarm if trivia is complete?
+            dismiss()
         }
     }
 }
@@ -98,10 +101,3 @@ let allQuestions = [
 
 // Shuffle the questions for random order
 let questionsInRandomOrder = allQuestions.shuffled()
-
-// Preview Provider
-struct TriviaView_Previews: PreviewProvider {
-    static var previews: some View {
-        TriviaView()
-    }
-}

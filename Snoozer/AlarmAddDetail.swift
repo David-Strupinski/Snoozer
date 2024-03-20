@@ -10,7 +10,7 @@ import SwiftUI
 struct AlarmAddDetail: View {
     @State private var time = Date()
     @Binding var alarms: [Date: Bool]
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationView {
@@ -21,7 +21,7 @@ struct AlarmAddDetail: View {
                 
                 Button("Submit") {
                     alarms[time] = true
-                    self.presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 }
             }
         }

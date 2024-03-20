@@ -13,8 +13,7 @@ struct AddFriendsView: View {
     @FocusState private var numberFocused: Bool
     @Binding var friends: [User]
     // TODO: try dismiss instead of presentationMode
-    //    @Environment(\.dismiss) private var dismiss
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         Text("Add Friend")
@@ -40,7 +39,7 @@ struct AddFriendsView: View {
             Button("Submit") {
                 if !phone.isEmpty {
                     addFriend(phone: phone)
-                    self.presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 }
             }
         }

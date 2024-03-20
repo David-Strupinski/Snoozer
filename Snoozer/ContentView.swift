@@ -15,7 +15,7 @@ struct ContentView: View {
     @Binding var user: User
     
     // TODO: fix, checking like this makes it not alarm at exact time
-    let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect() // Timer to check every minute
+    let timer = Timer.publish(every: 15, on: .main, in: .common).autoconnect() // Timer to check every minute
 
     var body: some View {
         NavigationView {

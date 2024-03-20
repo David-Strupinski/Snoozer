@@ -11,7 +11,6 @@ import PostgresNIO
 struct AddProfileView: View {
     @Binding var user: User
     @Binding var loggedIn: Bool
-    @Environment(\.presentationMode) var presentationMode
     @FocusState private var nameFocused: Bool
     @FocusState private var numberFocused: Bool
     
